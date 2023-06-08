@@ -1,12 +1,9 @@
 #!/usr/bin/python3
-from cProfile import label
-
 import yaml
 import os
 import cv2
 from torch.utils.data import Dataset, DataLoader
 import matplotlib.pyplot as plt
-import numpy as np
 
 class Dataset_Images(Dataset):
     def __init__(self, yaml_file, dataset_dir=None, labels_dir=None):
