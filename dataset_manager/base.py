@@ -4,6 +4,7 @@ import os
 import random
 import yaml
 from utils import Utils
+import numpy as np
 
 class CustomHandDataset:
     def __init__(self, data_dir_train, data_dir_val, output_dir, dataset_name_dir, img_size=224, max_images_per_class=None):
@@ -80,14 +81,17 @@ class CustomHandDataset:
                             break  # Reached the maximum number of images for this class
                         image_path = os.path.join(folder_path, image_file)
                         image = cv2.imread(image_path)
-                        frame, results = Utils.Hands_detection(image, self.hands)
+                        image, results = Utils.Hands_detection(image, self.hands)
+                        current_filter = np.array([[1, 2, 1],
+                                                   [2, -12, 2],
+                                                   [1, 2, 1]])
+                        image = cv2.filter2D(image, -1, current_filter)
                         if results.multi_hand_landmarks:
                             annotation_file = os.path.join(label_dir, f'{os.path.splitext(image_file)[0]}.txt')
-                            Utils.anotation_data(results, frame, annotation_file, class_index)
+                            Utils.anotation_data(results, image, annotation_file, class_index)
                             image_name = os.path.splitext(image_file)[0]
                             new_image_name = f'{class_name}_{image_name}.jpg'
                             new_annotation_file = os.path.join(label_dir, f'{class_name}_{image_name}.txt')
-                            image = cv2.resize(frame, (self.img_size, self.img_size))
                             output_image_path = os.path.join(image_dir, new_image_name)
                             cv2.imwrite(output_image_path, image)
                             os.rename(annotation_file, new_annotation_file)
@@ -117,13 +121,12 @@ class CustomHandDataset:
 
 
 if __name__ == '__main__':
-    data_dir_train = "images/Training"
-    data_dir_val = "images/Training"
+    data_dir_train = "images/training_subset_1"
+    data_dir_val = "images/validation_subset_1"
     output_dir = "datasets"
-    dataset_name = "dataset-v2"
+    dataset_name = "dataset-v1"
     img_size = 224
-    max_images_per_class = 2  # Choose the desired maximum number of images per class
-
+    max_images_per_class = 1
     dataset = CustomHandDataset(data_dir_train, data_dir_val, output_dir, dataset_name, img_size, max_images_per_class)
     dataset_length = len(dataset)
     print(dataset_length)

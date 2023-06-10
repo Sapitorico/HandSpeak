@@ -22,7 +22,7 @@ def Image_Collection(id_cam, DATA_PATH, action, imgSize, size_data, num_hands, h
                 positions = []
                 positions =  Base.Detect_hand_type(hand_type, result, positions, copy_image)
                 if len(positions) != 0:
-                    Base.Draw_Bound_Boxes(positions, image)
+                    Base.Draw_Bound_Boxes(positions, image, hand_type)
                     resized_hand = Base.Get_image_resized(positions, copy_image)
                     if key == 115:
                         k = 1
@@ -38,10 +38,10 @@ def Image_Collection(id_cam, DATA_PATH, action, imgSize, size_data, num_hands, h
 
 if __name__ == "__main__":
     id_cam = 0
-    DATA_PATH = "images/Training1"
+    DATA_PATH = "images/Training"
     action = ['A']
     imagSize = 224
-    size_data = 100
+    size_data = 1000
     num_hands = 1
     hand_type = "Right"
     Image_Collection(id_cam, DATA_PATH, action, imagSize, size_data, num_hands, hand_type)

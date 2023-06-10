@@ -2,6 +2,7 @@
 import cv2
 import mediapipe as mp
 import os
+import numpy as np
 
 # Inicializar el modelo de detección de manos
 mp_hands = mp.solutions.hands
@@ -16,11 +17,12 @@ class Utils:
         self.save_frequency = 10
         self.offset = 10
 
-        for action in self.actions:
-            try:
-                os.makedirs(os.path.join(self.DATA_PATH, action))
-            except:
-                pass
+        if actions is not None:
+            for action in self.actions:
+                try:
+                    os.makedirs(os.path.join(self.DATA_PATH, action))
+                except:
+                    pass
 
     @staticmethod
     def Hands_model_configuration(image_mode, max_hand, complexity):
@@ -40,6 +42,10 @@ class Utils:
         result = model.process(image)
         image.flags.writeable = False
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        # current_filter = np.array([[1, 2, 1],
+        #                            [2, -12, 2],
+        #                            [1, 2, 1]])
+        # image = cv2.filter2D(image, -1, current_filter)
         return image, result
 
     @staticmethod
@@ -96,7 +102,7 @@ class Utils:
                         positions.append((lm.x * ancho, lm.y * alto, lm.z * ancho))
         return positions
 
-    def Draw_Bound_Boxes(self, positions, frame):
+    def Draw_Bound_Boxes(self, positions, frame, cls=""):
         """
         hand box
 
@@ -116,6 +122,8 @@ class Utils:
                 frame.shape[1]:
             cv2.rectangle(frame, (x1 - self.offset - 40, y1 - self.offset - 15), (x2 - self.offset + 50, y2 - self.offset + 40),
                           (0, 255, 0), 3)
+            cv2.putText(frame, f'{cls}' , (x1 - self.offset - 40, y1 - self.offset - 20),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.60, [225, 255, 255], thickness=1)
 
     def Get_image_resized(self, positions, copie_img):
         """
