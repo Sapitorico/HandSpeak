@@ -42,10 +42,6 @@ class Utils:
         result = model.process(image)
         image.flags.writeable = False
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        # current_filter = np.array([[1, 2, 1],
-        #                            [2, -12, 2],
-        #                            [1, 2, 1]])
-        # image = cv2.filter2D(image, -1, current_filter)
         return image, result
 
     @staticmethod
@@ -96,11 +92,17 @@ class Utils:
         for hand_index, hand_info in enumerate(results.multi_handedness):
             hand_types = hand_info.classification[0].label
             if hand_types == hand_type:
-                for hand_landmarks in results.multi_hand_landmarks:
-                    for id, lm in enumerate(hand_landmarks.landmark):
-                        alto, ancho, c = copie_img.shape
-                        positions.append((lm.x * ancho, lm.y * alto, lm.z * ancho))
-        return positions
+                Utils.get_position(positions, results, copie_img)
+            if hand_type == "all":
+                Utils.get_position(positions, results, copie_img)
+            return positions
+
+    @staticmethod
+    def get_position(positions, results, copie_img):
+        for hand_landmarks in results.multi_hand_landmarks:
+            for id, lm in enumerate(hand_landmarks.landmark):
+                alto, ancho, c = copie_img.shape
+                positions.append((lm.x * ancho, lm.y * alto, lm.z * ancho))
 
     def Draw_Bound_Boxes(self, positions, frame, cls=""):
         """
