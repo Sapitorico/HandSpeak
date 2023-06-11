@@ -155,15 +155,28 @@ class Utils:
 
     def Save_resized_hand(self, resized_hand, count, hand_type):
         """
-        saves the captured image
+        Guarda la imagen capturada
 
-        :param resized_hand: image
-        :param count: cont
-        :param hand_type: Left or Right
+        :param resized_hand: imagen
+        :param count: contador
+        :param hand_type: Izquierda o Derecha
         """
         for action in self.actions:
             for sequence in range(self.save_frequency):
-                image_path = os.path.join(self.DATA_PATH, action, f'sequence {sequence} capture {hand_type} {count}.png')
+                image_name = f'sequence {sequence} capture {hand_type} {count}.png'
+                image_path = os.path.join(self.DATA_PATH, action, image_name)
+
+                # Verificar si el archivo ya existe
+                if os.path.exists(image_path):
+                    # Generar un nuevo nombre de archivo único
+                    index = 1
+                    while True:
+                        new_image_name = f'sequence {sequence} capture {hand_type} {count}_{index}.png'
+                        new_image_path = os.path.join(self.DATA_PATH, action, new_image_name)
+                        if not os.path.exists(new_image_path):
+                            image_path = new_image_path
+                            break
+                        index += 1
                 cv2.imwrite(image_path, resized_hand)
         if count >= self.size_data / self.save_frequency:
             exit(0)
