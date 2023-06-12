@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cámara</title>
+  </head>
+  <body>
+    <div id="imagen-container">
+      <img id="camara" src="" width="640" height="480">
+    </div>
+    <p id="cls-value"></p>
+    <button id="connect-btn" onclick="connectWebSocket()">Conectar</button>
+    <button id="disconnect-btn" onclick="disconnectWebSocket()" disabled>Desconectar</button>
+    <script>
+      const imgContainer = document.getElementById('imagen-container');
+      const clsValueElement = document.getElementById('cls-value');
+      let socket;
+      let currentClsValue = '';
+      let imageTimeout;
+      let isConnected = false;
+
+      function connectWebSocket() {
+        if (isConnected) {
+          console.log('Ya hay una conexión WebSocket abierta.');
+          return;
+        }
+
+        socket = new WebSocket('ws://127.0.0.1:8000/ws'); // URL del endpoint WebSocket de tu aplicación FastAPI
+
+        socket.onopen = function () {
+          console.log('Conexión establecida');
+          isConnected = true;
+          document.getElementById('connect-btn').disabled = true;
+          document.getElementById('disconnect-btn').disabled = false;
+        };
+
+        socket.onmessage = function (event) {
+          const data = JSON.parse(event.data); // Parsear el mensaje JSON recibido
+
+          if (data.image) {
+            const imageBase64 = data.image;
+
+            // Crear una nueva imagen en memoria
+            const newImg = new Image();
+            newImg.src = 'data:image/jpeg;base64,' + imageBase64;
+
+            // Reemplazar la imagen anterior con la nueva
+            imgContainer.innerHTML = '';
+            imgContainer.appendChild(newImg);
+
+            // Reiniciar el temporizador para restablecer la imagen después de un tiempo sin recibir mensajes
+            clearTimeout(imageTimeout);
+            imageTimeout = setTimeout(resetImage, 5000); // Cambia el tiempo en milisegundos según tus necesidades
+          }
+
+          if (data.cls !== currentClsValue) {
+            currentClsValue = data.cls;
+            clsValueElement.textContent = 'Valor de cls: ' + data.cls; // Mostrar el valor de cls en el elemento HTML
+          }
+        };
+
+        socket.onclose = function (event) {
+          console.log('Conexión cerrada: ', event);
+          isConnected = false;
+          document.getElementById('connect-btn').disabled = false;
+          document.getElementById('disconnect-btn').disabled = true;
+        };
+      }
+
+      function disconnectWebSocket() {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+          socket.close();
+          console.log('Conexión WebSocket cerrada');
+        }
+        isConnected = false;
+
+        // Cerrar la ventana de Electron
+        const { ipcRenderer } = require('electron');
+        ipcRenderer.send('close-window');
+      }
+
+      function resetImage() {
+        // Restablecer la imagen a un estado predeterminado cuando no se recibe ningún mensaje WebSocket durante un tiempo determinado
+        imgContainer.innerHTML = '';
+      }
+    </script>
+  </body>
+</html>
