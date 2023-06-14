@@ -1,17 +1,49 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const url = require('url');
+const fs = require('fs');
+
+let mainWindow;
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+  mainWindow = new BrowserWindow({
+    width: 1000,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
-    }
+      contextIsolation: false,
+    },
   });
 
-  win.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.loadURL(
+    url.format({
+      pathname: path.join(__dirname, 'camara.html'),
+      protocol: 'file:',
+      slashes: true,
+    })
+  );
+
+  mainWindow.on('closed', function () {
+    mainWindow = null;
+  });
 }
 
-app.whenReady().then(createWindow);
+app.on('ready', createWindow);
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+
+app.on('activate', function () {
+  if (mainWindow === null) {
+    createWindow();
+  }
+});
+
+ipcMain.on('cargar-contenido', (event, fileName) => {
+  const filePath = path.join(__dirname, fileName);
+  const contenido = fs.readFileSync(filePath, 'utf8');
+  event.reply('contenido-cargado', contenido);
+});
