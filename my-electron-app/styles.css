@@ -1,0 +1,249 @@
+#header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100vh;
+  width: 20%;
+  padding: 20px;
+  font-family: "Arial";
+}
+
+.handTitle {
+  background: linear-gradient(to right, #fff312, #fff763);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-family: "Arial";
+}
+
+#header-container nav ul {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+  line-height: 2;
+}
+
+#header-container nav ul li {
+  margin-bottom: 10px;
+}
+
+#header-container {
+  background-color: #0b164f;
+}
+
+#header-container a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+#header-container a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+#header-container a:hover::after {
+  background-color: white;
+}
+
+#header-container a:active::after {
+  background-color: white;
+  animation: flash 0.3s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body {
+background-color: #0a3b2f;
+display: flex;
+height: 100vh;
+margin: 0;
+}
+
+.cameraText {
+  color: white;
+  text-align: center;
+  border: 5px solid black;
+}
+
+.wipChallenge {
+  color: white;
+  text-align: center;
+}
+
+.wipGames {
+  color: white;
+  text-align: center;
+}
+
+.practicaIndividual {
+  color: white;
+  position: absolute;
+  top: 12%;
+  left: 40%;
+  border: 4px solid black;
+  font-family: "Arial";
+}
+
+.linkEmpezar {
+  color: white;
+  position: absolute;
+  top: 38%;
+  left: 70%;
+  background-color: transparent;
+  transition: background-color 0.1s;
+}
+
+.linkEmpezar:hover {
+  background-color: blue;
+  animation: flash 0.1s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.imgUno {
+  position: absolute;
+  top: 33%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 100px; /* Adjust this value as needed */
+  max-height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.practicaGuiada {
+  color: white;
+  position: absolute;
+  top: 45%;
+  left: 40%;
+  border: 4px solid black;
+  font-family: "Arial";
+}
+
+.imgDos {
+  position: absolute;
+  top: 66%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 100px; /* Adjust this value as needed */
+  max-height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.linkEmpezar2 {
+  color: white;
+  position: absolute;
+  top: 71%;
+  left: 65%;
+  background-color: transparent;
+  transition: background-color 0.1s;
+}
+
+.linkEmpezar2:hover {
+  background-color: blue;
+  animation: flash 0.1s;
+}
+
+.settingsWIP {
+  color: white;
+}
+
+.letras {
+  color: white;
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  font-family: "Arial";
+}
+
+.numeros {
+  color: white;
+  position: absolute;
+  top: 55%;
+  left: 40%;
+  font-family: "Arial";
+}
+
+.letra-A {
+  position: absolute;
+  top: 31%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 60px; /* Adjust this value as needed */
+  max-height: 75px;
+  display: block;
+  margin: 0 auto;
+}
+
+.letra-B {
+  position: absolute;
+  top: 31%;
+  left: 51.5%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 45px; /* Adjust this value as needed */
+  max-height: 45px;
+  display: block;
+  margin: 0 auto;
+}
+
+.num-1 {
+  position: absolute;
+  top: 66%;
+  left: 43.5%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 50px; /* Adjust this value as needed */
+  max-height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.num-2 {
+  position: absolute;
+  top: 66%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 50px; /* Adjust this value as needed */
+  max-height: 50px;
+  display: block;
+  margin: 0 auto;
+}
