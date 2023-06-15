@@ -104,6 +104,7 @@ class Utils:
                 alto, ancho, c = copie_img.shape
                 positions.append((lm.x * ancho, lm.y * alto, lm.z * ancho))
 
+
     def Draw_Bound_Boxes(self, positions, frame, cls=""):
         """
         hand box
@@ -153,6 +154,7 @@ class Utils:
         x2, y2 = x1 + ancho, y1 + alto
         resized_hand = copie_img[y1:y2, x1:x2]
         resized_hand = cv2.resize(resized_hand, (self.imgSize, self.imgSize), interpolation=cv2.INTER_CUBIC)
+        cv2.imshow("captura", resized_hand)
         return resized_hand
 
     def Save_resized_hand(self, resized_hand, count, hand_type):
