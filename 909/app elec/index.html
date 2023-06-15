@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HandSpeak</title>
+</head>
+<body>
+    <button type="button" onclick="openCamera()">Abrir Camara</button>
+    <button type="butt" onclick="closeCamera()">Cerrar Camara</button>
+    <br>
+    <video id="video" width="640" height="480" autoplay></video>
+    <h1>La letra es : <span id="letter"></span></h1>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <script src="websocket.js"></script>
+    <script src="camera.js"></script>
+</body>
+</html>
