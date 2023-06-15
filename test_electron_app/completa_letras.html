@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>completa letras</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #camara {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cuadro {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 24px;
+      color: #fff;
+      background-color: #333;
+    }
+
+    .cuadro.verde {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <h1>completa letras</h1>
+  <div class="content">
+    <input type="text" class="typing-input" maxlength="1">
+    <div class="inputs"></div>
+    <div class="details">
+      <p class="hint">Palabra: <span></span></p>
+      <p class="guess-left">Intentos restantes: <span></span></p>
+      <p class="wrong-letter">Letras incorrectas: <span></span></p>
+    </div>
+  </div>
+</div>
+<div id="imagen-container">
+  <img id="camara" src="" width="640" height="480">
+</div>
+<button id="connect-btn" onclick="toggleConnection()">Conectar</button>
+<button id="disconnect-btn" onclick="toggleConnection()" disabled>Desconectar</button>
+<script>
+  const imgContainer = document.getElementById('imagen-container');
+  const inputs = document.querySelector(".inputs");
+  const hintTag = document.querySelector(".hint span");
+  const guessLeft = document.querySelector(".guess-left span");
+  const wrongLetter = document.querySelector(".wrong-letter span");
+  const cuadros = document.getElementsByClassName('cuadro');
+  let socket;
+  let isConnected = false;
+
+  function toggleConnection() {
+    if (isConnected) {
+      disconnectWebSocket();
+    } else {
+      connectWebSocket();
+    }
+  }
+
+  function connectWebSocket() {
+    if (isConnected) {
+      console.log('Ya hay una conexión WebSocket abierta.');
+      return;
+    }
+
+    socket = new WebSocket('ws://127.0.0.1:8000/ws');
+
+    socket.onopen = function () {
+      console.log('Conexión establecida');
+      isConnected = true;
+      document.getElementById('connect-btn').disabled = true;
+      document.getElementById('disconnect-btn').disabled = false;
+    };
+
+    socket.onmessage = function (event) {
+      const data = JSON.parse(event.data);
+
+      if (data.image) {
+        const imageBase64 = data.image;
+
+        const newImg = new Image();
+        newImg.onload = function () {
+          imgContainer.innerHTML = '';
+          imgContainer.appendChild(newImg);
+        };
+        newImg.src = 'data:image/jpeg;base64,' + imageBase64;
+      }
+
+      if (data.cls) {
+        const clsValue = data.cls;
+        updateWord(clsValue);
+      }
+    };
+
+    socket.onclose = function (event) {
+      console.log('Conexión cerrada: ', event);
+      isConnected = false;
+      document.getElementById('connect-btn').disabled = false;
+      document.getElementById('disconnect-btn').disabled = true;
+      resetImage();
+    };
+  }
+
+  function disconnectWebSocket() {
+    if (socket) {
+      socket.close();
+      console.log('Conexión WebSocket cerrada');
+    }
+  }
+
+  function resetImage() {
+    imgContainer.innerHTML = '';
+  }
+
+  const wordList = [
+    { word: "O", hint: "o" },
+    { word: "L", hint: "l" },
+    { word: "Q", hint: "Q" },
+    { word: "R", hint: "R" },
+    { word: "U", hint: "U" },
+    { word: "V", hint: "V" },
+    { word: "W", hint: "W" },
+    { word: "OLVWQD", hint: "OLVWQD" },
+  ];
+
+  let word, maxGuesses, incorrectLetters = [], correctLetters = [];
+  let clsValueElement = document.getElementById('cls-value');
+
+  function randomWord() {
+    let ranItem = wordList[Math.floor(Math.random() * wordList.length)];
+    word = ranItem.word;
+    maxGuesses = word.length;
+    correctLetters = [];
+    incorrectLetters = [];
+    hintTag.innerText = ranItem.hint;
+    guessLeft.innerText = maxGuesses;
+    wrongLetter.innerText = incorrectLetters;
+    let html = "";
+    for (let i = 0; i < word.length; i++) {
+      html += `<input type="text" disabled>`;
+      inputs.innerHTML = html;
+    }
+  }
+
+  randomWord();
+
+  function updateWord(clsValue) {
+    const key = clsValue.toUpperCase();
+    if (key && !incorrectLetters.includes(` ${key}`) && !correctLetters.includes(key)) {
+      if (word.includes(key)) {
+        for (let i = 0; i < word.length; i++) {
+          if (word[i] == key) {
+            correctLetters += key;
+            inputs.querySelectorAll("input")[i].value = key;
+          }
+        }
+      } else {
+        incorrectLetters.push(` ${key}`);
+      }
+      guessLeft.innerText = maxGuesses;
+      wrongLetter.innerText = incorrectLetters;
+    }
+
+    setTimeout(() => {
+      if (correctLetters.length === word.length) {
+        // alert(`¡Felicitaciones! Encontraste la palabra: ${word.toUpperCase()}`);
+        randomWord();
+      } else if (maxGuesses < 1) {
+        alert("¡Game over! No te quedan intentos");
+        for (let i = 0; i < word.length; i++) {
+          inputs.querySelectorAll("input")[i].value = word[i];
+        }
+      }
+    }, 100);
+  }
+
+</script>
+</body>
+</html>
