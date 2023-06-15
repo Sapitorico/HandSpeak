@@ -14,7 +14,7 @@ async def video(websocket: WebSocket):
 
 # Lógica de detección de señas en tiempo real
 async def Real_time_sign_detection(websocket: WebSocket):
-    model = Model_loader("models/v1.onnx", 0.8)
+    model = Model_loader("models/best (2).onnx", 0.8)
     hand_type = "Right"
     utils = PreprocessImage(224)
     Hands = utils.Hands_model_configuration(False, 1, 1)
