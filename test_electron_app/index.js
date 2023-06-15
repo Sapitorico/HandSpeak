@@ -17,7 +17,7 @@ function createWindow() {
 
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, 'camara.html'),
+      pathname: path.join(__dirname, 'completa_letras.html'),
       protocol: 'file:',
       slashes: true,
     })
