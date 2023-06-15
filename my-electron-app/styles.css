@@ -1,0 +1,595 @@
+#header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100vh;
+  width: 23vh;
+  padding: 20px;
+  font-family: "Arial";
+}
+
+.handTitle {
+  background: linear-gradient(to right, #fff312, #fffdd0);
+  position:relative;
+  font-family: "Arial";
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  top: 0%;
+  left: 0%;
+  transform: translate(-1%, 5%);
+}
+
+.squareTitle {
+  background-color: #8ba8f2;
+  position:absolute;
+  opacity: 0.5;
+  width: 18%;
+  height: 50px;
+  top: 5.5%; /* Adjust this value as needed */
+  left: -78.5%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#header-container nav ul {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+  line-height: 2;
+}
+
+#header-container nav ul li {
+  margin-bottom: 20px;
+  font-size:large;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#header-container {
+  background-color: #0b164f;
+}
+
+#header-container a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+#header-container a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+#header-container a:hover::after {
+  background-color: white;
+}
+
+#header-container a:active::after {
+  background-color: white;
+  animation: flash 0.3s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body {
+background-color: #0b0a3b;
+display: flex;
+height: 100vh;
+margin: 0;
+}
+
+.cameraText {
+  color: white;
+  text-align: center;
+  border: 5px solid black;
+}
+
+.wipChallenge {
+  color: white;
+  text-align: center;
+}
+
+.wipGames {
+  color: white;
+  text-align: center;
+}
+
+.practicaIndividual {
+  color: white;
+  position: absolute;
+  top: 12%;
+  left: 41%;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.individualRectangle1 {
+  background-color: #2ab9f1;
+  position: absolute;
+  opacity: 1;
+  width: 40%;
+  height: 142px;
+  border-radius: 0px;
+  top: 87px; /* Adjust this value as needed */
+  left: 20%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.individualRectangle2 {
+  background-color: #953bc2;
+  position: absolute;
+  opacity: 1;
+  width: 40%;
+  height: 43.5px;
+  border-radius: 0px;
+  top: 86px; /* Adjust this value as needed */
+  left: 20%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.guiadaRectangle1 {
+  background-color: #2ab9f1;
+  position: absolute;
+  opacity: 1;
+  width: 40%;
+  height: 142.2px;
+  border-radius: 0px;
+  top: 267px; /* Adjust this value as needed */
+  left: 20%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.guiadaRectangle2 {
+  background-color: #953bc2;
+  position: absolute;
+  opacity: 1;
+  width: 40%;
+  height: 43.5px;
+  border-radius: 0px;
+  top: 266px; /* Adjust this value as needed */
+  left: 20%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkEmpezar {
+  color: white;
+  position: absolute;
+  top: 38%;
+  left: 70%;
+  background-color: transparent;
+  transition: background-color 0.1s;
+}
+
+.linkEmpezar:hover {
+  background-color: blue;
+  animation: flash 0.1s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.imgUno {
+  position: absolute;
+  top: 33%;
+  left: 47%;
+  transform: translate(-54%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 100px; /* Adjust this value as needed */
+  max-height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.practicaGuiada {
+  color: white;
+  position: absolute;
+  top: 45.3%;
+  left: 43.5%;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.imgDos {
+  position: absolute;
+  top: 66.1%;
+  left: 46.5%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 100px; /* Adjust this value as needed */
+  max-height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.linkEmpezar2 {
+  color: white;
+  position: absolute;
+  top: 71.2%;
+  left: 70%;
+  background-color: transparent;
+  transition: background-color 0.1s;
+}
+
+.linkEmpezar2:hover {
+  background-color: blue;
+  animation: flash 0.1s;
+}
+
+.letras {
+  color: white;
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  font-family: "Arial";
+}
+
+.numeros {
+  color: white;
+  position: absolute;
+  top: 55%;
+  left: 40%;
+  font-family: "Arial";
+}
+
+.letra-A {
+  position: absolute;
+  top: 31%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 60px; /* Adjust this value as needed */
+  max-height: 75px;
+  display: block;
+  margin: 0 auto;
+}
+
+.letra-B {
+  position: absolute;
+  top: 31%;
+  left: 51.5%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 45px; /* Adjust this value as needed */
+  max-height: 45px;
+  display: block;
+  margin: 0 auto;
+}
+
+.num-1 {
+  position: absolute;
+  top: 66%;
+  left: 43.5%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 50px; /* Adjust this value as needed */
+  max-height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.num-2 {
+  position: absolute;
+  top: 66%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 50px; /* Adjust this value as needed */
+  max-height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.rectangle1 {
+  position: relative;
+  background-color: #d2f2d8;
+  opacity: 1;
+  width: 440px;
+  height: 440px;
+  top: 10%; /* Adjust this value as needed */
+  left: 10%; /* Adjust this value as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rectangle2 {
+  background-color: #b5b5b5;
+  position: absolute;
+  opacity: 0.5;
+  width: 100%;
+  height: 30px;
+  top: 0px; /* Adjust this value as needed */
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rectangle3 {
+  background-color: #b5b5b5;
+  position: absolute;
+  opacity: 0.8;
+  width: 80%;
+  height: 80px;
+  border-radius: 10px;
+  top: 60px; /* Adjust this value as needed */
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rectangle4 {
+  background-color: #e4e4e4;
+  position: absolute;
+  opacity: 1;
+  width: 40%;
+  height: 80px;
+  border-radius: 0px;
+  top: 60px; /* Adjust this value as needed */
+  left: -50%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.manoIzquierda {
+  color: black;
+  position: absolute;
+  top: 20.5%;
+  left: 48%;
+  font-size:16px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /*text-decoration: none;*/
+}
+
+.manoDerecha {
+  color: black;
+  position: absolute;
+  top: 20.6%;
+  left: 71.5%;
+  /*text-decoration: none;*/
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:16px;
+}
+
+.line1 {
+  border-left:2px solid black;
+  height: 80px;
+  transform:translate(750%, -150%);
+}
+
+#settingsWIP {
+  opacity: 1;
+  color: rgb(53, 53, 53);
+  font-family: "Raleway", sans-serif;
+  position: absolute;
+  top: -10px; /* Adjust this value as needed */
+  left: 8%; /* Adjust this value as needed */
+  transform: translateX(-50%);
+}
+
+#dominanteMano {
+  color: black;
+  position: relative;
+  top: -27.3%;
+  left: -25%;
+  /*text-decoration: none;*/
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size:18px;
+}
+
+.titleRectangle {
+  background-image:linear-gradient(to right,#2ab9f1, #953bc2);
+  position:relative;
+  opacity: 1;
+  width: 70%;
+  height: 250px;
+  border-radius: 15px;
+  top: 40px; /* Adjust this value as needed */
+  left: 0%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeSlogan {
+  position:absolute;
+  color:white;
+  text-align:left;
+  top: 40%;
+  left: 0%;
+  transform:translate(45%, -500%);
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /*text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;*/
+}
+
+.homeSlogan2 {
+  position:absolute;
+  color:white;
+  text-align:left;
+  top: 40%;
+  left: 0%;
+  transform:translate(53%, -400%);
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /*text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;*/
+}
+
+.aslIcon {
+  position:absolute;
+  top:20%;
+  left:60%;
+  width:33%;
+  height:33%;
+}
+
+.edLayer1 {
+  background-color: white;
+  position:absolute;
+  opacity: 1;
+  width: 70%;
+  height: 470px;
+  border-radius: 15px;
+  top: 38px; /* Adjust this value as needed */
+  left: 22%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edLayer2 {
+  background-color: black;
+  position:relative;
+  opacity: 1;
+  width: 65%;
+  height: 210px;
+  border-radius: 15px;
+  top: 60px; /* Adjust this value as needed */
+  left: 0%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edLayer3 {
+  background-color: gray;
+  position:absolute;
+  opacity: 1;
+  width: 64.4%;
+  height: 206px;
+  border-radius: 13px;
+  top: 62px; /* Adjust this value as needed */
+  left: 21.5%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line2 {
+  border-left:3px solid black;
+  height: 208px;
+  transform:translate(19500%, 30%);
+  position:absolute;
+}
+
+.letra {
+  position:absolute;
+  transform:translate(550%, 300%);
+}
+
+.letraVideo {
+  position:absolute;
+  transform:translate(125%, 60%);
+}
+
+.edLayer4 {
+  background-color: black;
+  position:absolute;
+  opacity: 1;
+  width: 32%;
+  height: 210px;
+  border-radius: 15px;
+  top: 284px; /* Adjust this value as needed */
+  left: 23%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edLayer5 {
+  background-color: gray;
+  position:absolute;
+  opacity: 1;
+  width: 31.4%;
+  height: 204px;
+  border-radius: 11px;
+  top: 287px; /* Adjust this value as needed */
+  left: 23%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letraCamara {
+  position:absolute;
+  transform:translate(302%, 910%);
+}
