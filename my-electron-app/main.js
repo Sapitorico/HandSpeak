@@ -5,11 +5,15 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 800,
+    minHeight: 600,
+    maxWidth: 800,
+    maxHeight: 600,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     },
-    icon: path.join(__dirname, 's.ico'),
+    icon: path.join(__dirname, 'images/s.ico'),
   })
 
   win.loadFile('index.html')
