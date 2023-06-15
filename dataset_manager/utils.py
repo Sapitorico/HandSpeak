@@ -104,6 +104,7 @@ class Utils:
                 alto, ancho, c = copie_img.shape
                 positions.append((lm.x * ancho, lm.y * alto, lm.z * ancho))
 
+
     def Draw_Bound_Boxes(self, positions, frame, cls=""):
         """
         hand box

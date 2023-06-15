@@ -68,8 +68,7 @@ if __name__ == "__main__":
     training_dir = "images/Training"
     subset_dir = "images"
     subset_num = 1
-    num_image_per_class = 500
-    validation_percentage = 0.2
-
+    num_image_per_class = 7050
+    validation_percentage = 0.25
     subset_creator = DatasetSubsetCreator(training_dir, subset_dir, subset_num, num_image_per_class, validation_percentage)
     subset_creator.create_subset()

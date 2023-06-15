@@ -7,7 +7,7 @@ import onnxruntime as ort
 mp_hands = mp.solutions.hands
 
 alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "HAND",
-            "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+            "I", "J", "K", "L", "M", "N", "enie", "O", "P", "Q",
             "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 class PreprocessImage:
@@ -102,6 +102,7 @@ class PreprocessImage:
         x2, y2 = x1 + ancho, y1 + alto
         resized_hand = copie_image[y1:y2, x1:x2]
         resized_hand = cv2.resize(resized_hand, (self.imgSize, self.imgSize), interpolation=cv2.INTER_CUBIC)
+
         return resized_hand
 
     @staticmethod

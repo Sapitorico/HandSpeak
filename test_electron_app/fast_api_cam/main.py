@@ -1,21 +1,27 @@
-from fastapi import FastAPI, WebSocket
-from fastapi.websockets import WebSocketState
 import cv2
 import base64
-import websockets.exceptions
+from fastapi import FastAPI, WebSocket
+from fastapi.websockets import WebSocketState
 from utils.utils import PreprocessImage, Model_loader
-import websockets
 
 app = FastAPI()
 
+
+@app.websocket("/ws")
+async def video(websocket: WebSocket):
+    await websocket.accept()
+    await Real_time_sign_detection(websocket)
+
+# Lógica de detección de señas en tiempo real
 async def Real_time_sign_detection(websocket: WebSocket):
-    model = Model_loader("models/best (2).onnx", 0.1)
+    model = Model_loader("models/v1.onnx", 0.8)
     hand_type = "Right"
     utils = PreprocessImage(224)
     Hands = utils.Hands_model_configuration(False, 1, 1)
     capture = cv2.VideoCapture(0)
+
     with Hands:
-        while capture.isOpened() and websocket.client_state != WebSocketState.DISCONNECTED:
+        while websocket.client_state != WebSocketState.DISCONNECTED:
             success, image = capture.read()
             if not success:
                 continue
@@ -40,11 +46,6 @@ async def Real_time_sign_detection(websocket: WebSocket):
 
             try:
                 await websocket.send_json(data)
-            except websockets.exceptions.ConnectionClosedError:
+            except Exception:
                 break
 
-
-@app.websocket("/ws")
-async def video(websocket: WebSocket):
-    await websocket.accept()
-    await Real_time_sign_detection(websocket)

@@ -7,12 +7,11 @@ from utils import Utils
 import numpy as np
 
 class CustomHandDataset:
-    def __init__(self, data_dir_train, data_dir_val, output_dir, dataset_name_dir, img_size=224, max_images_per_class=None):
+    def __init__(self, data_dir_train, data_dir_val, output_dir, dataset_name_dir, img_size=224):
         self.data_dir_train = data_dir_train
         self.data_dir_val = data_dir_val
         self.output_dir = output_dir + "/" + dataset_name_dir
         self.img_size = img_size
-        self.max_images_per_class = max_images_per_class
 
 
         val_image_dir = os.path.join(self.output_dir, 'images/val')
@@ -42,10 +41,6 @@ class CustomHandDataset:
 
             # Shuffle the classes
             random.shuffle(self.classes)
-
-            # Limit the number of images per class if specified
-            if self.max_images_per_class is not None:
-                self.classes = self.classes[:self.max_images_per_class]
 
             self.create_dataset_config(train_image_dir, val_image_dir, class_file, os.path.join(self.output_dir, 'dataset.yaml'), dataset_name_dir)
 
@@ -77,15 +72,9 @@ class CustomHandDataset:
                 images_per_class = 0  # Counter for images per class
                 for index, image_file in enumerate(os.listdir(folder_path)):
                     if image_file.endswith('.jpg') or image_file.endswith('.png'):
-                        if self.max_images_per_class is not None and images_per_class >= self.max_images_per_class:
-                            break  # Reached the maximum number of images for this class
                         image_path = os.path.join(folder_path, image_file)
                         image = cv2.imread(image_path)
                         image, results = Utils.Hands_detection(image, self.hands)
-                        current_filter = np.array([[1, 2, 1],
-                                                   [2, -12, 2],
-                                                   [1, 2, 1]])
-                        image = cv2.filter2D(image, -1, current_filter)
                         if results.multi_hand_landmarks:
                             annotation_file = os.path.join(label_dir, f'{os.path.splitext(image_file)[0]}.txt')
                             Utils.anotation_data(results, image, annotation_file, class_index)
@@ -126,7 +115,6 @@ if __name__ == '__main__':
     output_dir = "datasets"
     dataset_name = "dataset-v1"
     img_size = 224
-    max_images_per_class = 1
-    dataset = CustomHandDataset(data_dir_train, data_dir_val, output_dir, dataset_name, img_size, max_images_per_class)
+    dataset = CustomHandDataset(data_dir_train, data_dir_val, output_dir, dataset_name, img_size)
     dataset_length = len(dataset)
     print(dataset_length)

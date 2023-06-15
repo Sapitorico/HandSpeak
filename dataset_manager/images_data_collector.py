@@ -39,9 +39,9 @@ def Image_Collection(id_cam, DATA_PATH, action, imgSize, size_data, num_hands, h
 if __name__ == "__main__":
     id_cam = 0
     DATA_PATH = "images/Training"
-    action = ['A']
+    action = ['Z']
     imagSize = 224
     size_data = 1000
     num_hands = 1
-    hand_type = "Right"
+    hand_type = "Left"
     Image_Collection(id_cam, DATA_PATH, action, imagSize, size_data, num_hands, hand_type)

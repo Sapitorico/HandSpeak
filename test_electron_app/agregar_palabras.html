@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>agregar palabras</title>
+  <style>
+    #camara {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cuadro {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 24px;
+      color: #fff;
+      background-color: #333;
+    }
+
+    .verde {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="word-input">
+  <button onclick="addWord()">Agregar palabra</button>
+  <div id="letras-container"></div>
+
+  <div id="imagen-container">
+    <img id="camara" src="" width="640" height="480">
+  </div>
+  <p id="cls-value"></p>
+  <button id="connect-btn" onclick="toggleConnection()">Conectar</button>
+  <button id="disconnect-btn" onclick="toggleConnection()" disabled>Desconectar</button>
+
+  <script>
+    const wordInput = document.getElementById('word-input');
+    const letrasContainer = document.getElementById('letras-container');
+    const imgContainer = document.getElementById('imagen-container');
+    const clsValueElement = document.getElementById('cls-value');
+    const cuadros = [];
+
+    function addWord() {
+      const word = wordInput.value.trim().toUpperCase();
+
+      if (word !== '') {
+        const cuadro = document.createElement('div');
+        cuadro.className = 'cuadro';
+        cuadro.textContent = word;
+        cuadro.setAttribute('data-letra', word);
+        letrasContainer.appendChild(cuadro);
+        cuadros.push(cuadro);
+        wordInput.value = '';
+      }
+    }
+
+    let socket;
+    let isConnected = false;
+
+    function toggleConnection() {
+      if (isConnected) {
+        disconnectWebSocket();
+      } else {
+        connectWebSocket();
+      }
+    }
+
+    function connectWebSocket() {
+      if (isConnected) {
+        console.log('Ya hay una conexión WebSocket abierta.');
+        return;
+      }
+
+      socket = new WebSocket('ws://127.0.0.1:8000/ws');
+
+      socket.onopen = function () {
+        console.log('Conexión establecida');
+        isConnected = true;
+        document.getElementById('connect-btn').disabled = true;
+        document.getElementById('disconnect-btn').disabled = false;
+      };
+
+      socket.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+
+        if (data.image) {
+          const imageBase64 = data.image;
+
+          const newImg = new Image();
+          newImg.onload = function () {
+
+            imgContainer.innerHTML = '';
+            imgContainer.appendChild(newImg);
+          };
+          newImg.src = 'data:image/jpeg;base64,' + imageBase64;
+        }
+
+        if (data.cls) {
+          const clsValue = data.cls;
+          clsValueElement.textContent = 'Valor de cls: ' + clsValue;
+
+          for (let i = 0; i < cuadros.length; i++) {
+            const cuadroLetra = cuadros[i].getAttribute('data-letra');
+            if (cuadroLetra === clsValue) {
+              cuadros[i].classList.add('verde');
+              break;
+            }
+          }
+        }
+      };
+
+      socket.onclose = function (event) {
+        console.log('Conexión cerrada: ', event);
+        isConnected = false;
+        document.getElementById('connect-btn').disabled = false;
+        document.getElementById('disconnect-btn').disabled = true;
+        resetImage();
+      };
+    }
+    function disconnectWebSocket() {
+      if (socket) {
+        socket.close();
+        console.log('Conexión WebSocket cerrada');
+      }
+    }
+
+    function resetImage() {
+      imgContainer.innerHTML = '';
+    }
+  </script>
+</body>
+</html>
