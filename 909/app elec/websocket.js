@@ -4,7 +4,12 @@ function sendImages(imageData) {
   //envia las imagenes la server
   if (socket.readyState === WebSocket.OPEN) {
     //console.log('enviando imagen...');
-    socket.send(imageData);
+    let hand = document.querySelectorAll('input[name="options"]')
+    if (hand[0].checked) {
+      hand = "Right"
+    } else hand = "Left"
+    console.log(hand)
+    socket.send(JSON.stringify([imageData, hand]));
   } else {
     socket = new WebSocket('ws://127.0.0.1:8000');
     socket.onopen = function() {
