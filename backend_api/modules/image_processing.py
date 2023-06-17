@@ -4,6 +4,7 @@ import numpy as np
 from typing import Tuple, Any, List # Type information
 
 mp_hands = mp.solutions.hands
+mp_drawing = mp.solutions.drawing_utils
 
 """
 utils class for image processing, functionalities:
