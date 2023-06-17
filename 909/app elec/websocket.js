@@ -8,8 +8,12 @@ function sendImages(imageData) {
     if (hand[0].checked) {
       hand = "Right"
     } else hand = "Left"
-    console.log(hand)
-    socket.send(JSON.stringify([imageData, hand]));
+    let model = document.querySelectorAll('input[name="model"]')
+    if (model[0].checked) {
+      model = "Letter"
+     } else model = "Number"
+    console.log(model)
+    socket.send(JSON.stringify([imageData, hand, model]));
   } else {
     socket = new WebSocket('ws://127.0.0.1:8000');
     socket.onopen = function() {

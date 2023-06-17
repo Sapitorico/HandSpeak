@@ -23,7 +23,7 @@ Fields:
 
 
 class Model_loader:
-    model_path = "../model/epoch-63.onnx"
+    model_path = "../models/best (2).onnx"
     alphabet = ["A", "B", "C", "D", "E", "enie", "F", "G", "H", "HAND",
                 "I", "J", "K", "L", "M", "N", "O", "P", "Q",
                 "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -68,34 +68,21 @@ class Model_loader:
         return cls
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     import cv2
     from image_processing import HandDetectionUtils
-    """
-    test in real time
-    """
+    
+     #   test in real time
+    
     capture = cv2.VideoCapture(0)
     Base = HandDetectionUtils(1,224)
     model = Model_loader(0.05)
     Hands = Base.hands
     with Hands:
-        while capture.isOpened():
-            key = cv2.waitKey(1)
-            success, image = capture.read()
-            if not success:
-                continue
-            image = cv2.flip(image, 1)
-            result = Base.detect_hands(image)
-            copy_image = image.copy()
-            if result.multi_hand_landmarks:
-                positions = Base.detect_hand_type("Right", result, copy_image)
-                if len(positions) != 0:
-                    resized_hand = Base.get_image_resized(positions, copy_image)
-                    cls = model.predict(resized_hand)
-                    print(cls)
-                    cv2.imshow("hola", resized_hand)
-            if key == 27:
-                break
-            cv2.imshow("image capture", image)
-    capture.release()
-    cv2.destroyAllWindows()
+        result = Base.detect_hands(image)
+        copy_image = image.copy()
+        if result.multi_hand_landmarks:
+            positions = Base.detect_hand_type(hand_type, result, copy_image)
+            if len(positions) != 0:
+                resized_hand = Base.get_image_resized(positions, copy_image)
+                cls = model.predict(resized_hand)"""

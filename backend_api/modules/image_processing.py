@@ -131,10 +131,10 @@ class HandDetectionUtils:
         return resized_hand
 
 
-if __name__ == '__main__':
-    """
-    test in real time
-    """
+"""if __name__ == '__main__':
+    
+ #   test in real time
+    
     capture = cv2.VideoCapture(0)
     Base = HandDetectionUtils(224)
     Hands = Base.hands
@@ -156,4 +156,4 @@ if __name__ == '__main__':
                 break
             cv2.imshow("image capture", image)
     capture.release()
-    cv2.destroyAllWindows()
+    cv2.destroyAllWindows()"""
