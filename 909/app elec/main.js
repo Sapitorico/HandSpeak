@@ -3,6 +3,9 @@ const { spawn } = require('child_process');
 const path = require('path');
 const kill = require('tree-kill');
 
+let terminal 
+let isTerminating = false
+
 const createWindow = () => {
     const win = new BrowserWindow({
       width: 800,
@@ -13,23 +16,31 @@ const createWindow = () => {
   }
 
 app.whenReady().then(() => {
-  createWindow()
-  const directoryPath = 'C:/Users/5771/Desktop/909/serv';
-  const command = 'uvicorn main:app --reload';
-  const terminal = spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash', [], {
+  const directoryPath = path.join(__dirname, '../serv')
+  const command = 'uvicorn main:app';
+  terminal = spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash', [], {
     cwd: directoryPath,
     shell: true,
   });
   terminal.stdin.write(`${command}\n`)
+  createWindow()
 })
 
-app.on('before-quit', () => {
-  if (terminal) {
-    kill(terminal.pid);
+app.on('before-quit', (event) => {
+  if (!isTerminating) {
+    event.preventDefault();
+    isTerminating = true;
+    kill(terminal.pid, 'SIGTERM', (err) => {
+      if (err) {
+        console.error('Failed to kill terminal process:', err);
+        isTerminating = false;
+      } else {
+        app.quit();
+      }
+    });
   }
 });
 
 app.on('window-all-closed', () => {
-  kill(terminal.pid)
   if (process.platform !== 'darwin') app.quit()
 })
