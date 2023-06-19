@@ -37,11 +37,10 @@ class HandDetectionUtils:
         self.imgSize = imgSize
         self.offset = offset
         self.hands = mp_hands.Hands(
-            static_image_mode=False,
+            static_image_mode=True,
             max_num_hands=max_hand,
             model_complexity=1,
-            min_detection_confidence=0.5,
-            min_tracking_confidence=0.5
+            min_detection_confidence=0.8,
         )
 
 

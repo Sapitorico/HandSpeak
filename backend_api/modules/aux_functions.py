@@ -1,18 +1,17 @@
 #!/usr/bin/python3
 import cv2
 from urllib.request import urlopen
-from PIL import Image
-import base64
-from io import BytesIO
 import numpy as np
 from image_processing import HandDetectionUtils
 from numbers_model import count_fingers
 
 
-#Base = HandDetectionUtils(1, 224)
-#Hands = Base.hands
-
 def processLetter(image, hand_type):
+    """
+    Function that recieves the stream frame (image) and the hand_type.
+    Returns: if success: an isoleted and resized image of the hand
+                   else: string "Error, not a hand" 
+    """
     Base = HandDetectionUtils(1, 224)
     Hands = Base.hands
     image = cv2.flip(image, 1)
@@ -28,6 +27,11 @@ def processLetter(image, hand_type):
         return("Error, not a hand")
     
 def processNumber(image):
+    """
+    Function that recieves the stream frame (image)
+    Returns: if success: The number taht has been obtained with count_fingers fucntion
+                   else: string "Error, not a hand"
+    """
     Base = HandDetectionUtils(1, 224)
     Hands = Base.hands
     with Hands:
@@ -37,14 +41,5 @@ def processNumber(image):
             number = count_fingers(result, copy_image)
             return number
         return("Error, not a hand")
-
-
-
-def url_to_image(canvas_url):
-    encoded_data = canvas_url.split(',')[1]
-    decoded_data = base64.b64decode(encoded_data)
-    image_stream = BytesIO(decoded_data)
-    image = Image.open(image_stream)
-    return image
 
       
