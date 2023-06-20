@@ -1,7 +1,24 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 import shutil
 import os
 import random
+
+"""
+The DatasetSubsetCreator class is designed to create a subset of a given training dataset for machine learning purposes. The class takes in a training directory, a subset directory, a subset number, the number of training images per class, and a validation percentage. The main functionalities of the class are to create a subset of the training dataset with a specified number of images per class and a validation set with a specified percentage of the training set. The class achieves this by copying a specified number of images from each class in the training set to the subset directory and moving a specified percentage of those images to the validation set.
+
+Methods:
+- __init__(self, training_dir, subset_dir, subset_num, train_images_per_class=500, validation_percentage=0.2): Constructor method that initializes the class fields with the given parameters.
+- create_subset(self): Method that creates the subset and validation sets by copying and moving images from the training set to the subset and validation directories. It iterates through each class in the training set, copies a specified number of images to the subset directory, and moves a specified percentage of those images to the validation directory.
+
+Fields:
+- training_dir: The directory path of the training dataset.
+- subset_dir: The directory path where the subset and validation sets will be created.
+- subset_num: The number of the subset being created.
+- train_images_per_class: The number of training images to be copied per class.
+- validation_percentage: The percentage of training images to be moved to the validation set.
+"""
+
 
 class DatasetSubsetCreator:
     def __init__(self, training_dir, subset_dir, subset_num, train_images_per_class=500, validation_percentage=0.2):
@@ -65,10 +82,15 @@ class DatasetSubsetCreator:
         print("Training and validation subsets created successfully.")
 
 if __name__ == "__main__":
-    training_dir = "images/Training"
-    subset_dir = "images"
-    subset_num = 1
-    num_image_per_class = 7050
-    validation_percentage = 0.25
-    subset_creator = DatasetSubsetCreator(training_dir, subset_dir, subset_num, num_image_per_class, validation_percentage)
+    import argparse
+    parser = argparse.ArgumentParser(description='Dataset Subset Creator')
+    parser.add_argument('--training_dir', required=True, help='Directory path of the training dataset')
+    parser.add_argument('--subset_dir', required=True, help='Directory path where the subset and validation sets will be created')
+    parser.add_argument('--subset_num', type=int, default=1, help='Number of the subset being created')
+    parser.add_argument('--train_images_per_class', type=int, default=500, help='Number of training images to be copied per class')
+    parser.add_argument('--validation_percentage', type=float, default=0.2, help='Percentage of training images to be moved to the validation set')
+    args = parser.parse_args()
+
+    subset_creator = DatasetSubsetCreator(args.training_dir, args.subset_dir, args.subset_num,
+                                          args.train_images_per_class, args.validation_percentage)
     subset_creator.create_subset()
