@@ -37,11 +37,10 @@ class HandDetectionUtils:
         self.imgSize = imgSize
         self.offset = offset
         self.hands = mp_hands.Hands(
-            static_image_mode=False,
+            static_image_mode=True,
             max_num_hands=max_hand,
             model_complexity=1,
-            min_detection_confidence=0.5,
-            min_tracking_confidence=0.5
+            min_detection_confidence=0.8,
         )
 
 
@@ -131,10 +130,10 @@ class HandDetectionUtils:
         return resized_hand
 
 
-if __name__ == '__main__':
-    """
-    test in real time
-    """
+"""if __name__ == '__main__':
+    
+ #   test in real time
+    
     capture = cv2.VideoCapture(0)
     Base = HandDetectionUtils(224)
     Hands = Base.hands
@@ -156,4 +155,4 @@ if __name__ == '__main__':
                 break
             cv2.imshow("image capture", image)
     capture.release()
-    cv2.destroyAllWindows()
+    cv2.destroyAllWindows()"""

@@ -16,7 +16,7 @@ const createWindow = () => {
   }
 
 app.whenReady().then(() => {
-  const directoryPath = path.join(__dirname, '../serv')
+  const directoryPath = path.join(__dirname, '../../backend_api/modules')
   const command = 'uvicorn main:app';
   terminal = spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash', [], {
     cwd: directoryPath,
