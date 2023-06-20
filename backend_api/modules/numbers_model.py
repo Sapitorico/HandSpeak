@@ -1,4 +1,54 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from image_processing import mp_drawing
+
+"""
+Objective:
+The objective of the 'count_fingers' function is to count the number of fingers that are visible in an image of a hand using the results obtained from the MediaPipe Hand Detection model.
+
+Inputs:
+- 'results': the results obtained from the MediaPipe Hand Detection model, which includes the landmarks of the hand.
+- 'image': the image of the hand.
+
+Flow:
+- Initialize 'fingerCount' to 0.
+- Get the height and width of the image.
+- If there are multiple hand landmarks detected:
+  - For each hand landmark:
+    - Get the hand type (left or right).
+    - Get the landmarks for the thumb tip and pinky tip.
+    - If the thumb tip is to the left of the pinky tip and the hand type is right:
+      - Get the y-coordinate of the thumb tip.
+      - Get the y-coordinates of the index, middle, ring, and pinky pip landmarks.
+      - Get the x-coordinate of the index MCP landmark.
+      - Get the y-coordinates of the index, middle, ring, and pinky tip landmarks.
+      - Calculate the difference between the x-coordinate of the thumb IP landmark and the x-coordinate of the index MCP landmark.
+      - If the finger positions indicate one finger is extended, set 'fingerCount' to 1.
+      - If the finger positions indicate two fingers are extended, set 'fingerCount' to 2.
+      - If the finger positions indicate three fingers are extended, set 'fingerCount' to 3.
+      - If the finger positions indicate four fingers are extended, set 'fingerCount' to 4.
+      - If the finger positions indicate five fingers are extended, set 'fingerCount' to 5.
+    - If the thumb tip is to the right of the pinky tip and the hand type is left:
+      - Get the y-coordinate of the thumb tip.
+      - Get the y-coordinates of the index, middle, ring, and pinky pip landmarks.
+      - Get the x-coordinate of the index MCP landmark.
+      - Get the y-coordinates of the index, middle, ring, and pinky tip landmarks.
+      - Calculate the difference between the x-coordinate of the thumb IP landmark and the x-coordinate of the index MCP landmark.
+      - If the finger positions indicate one finger is extended, set 'fingerCount' to 1.
+      - If the finger positions indicate two fingers are extended, set 'fingerCount' to 2.
+      - If the finger positions indicate three fingers are extended, set 'fingerCount' to 3.
+      - If the finger positions indicate four fingers are extended, set 'fingerCount' to 4.
+      - If the finger positions indicate five fingers are extended, set 'fingerCount' to 5.
+- Return 'fingerCount'.
+
+Outputs:
+- 'fingerCount': the number of fingers that are visible in the image of the hand.
+
+Additional aspects:
+- The function uses the MediaPipe Hand Detection model to obtain the landmarks of the hand.
+- The function uses the 'mp_drawing' module from the 'image_processing' package to convert the normalized landmark coordinates to pixel coordinates.
+- The function assumes that the hand in the image is either a left or right hand
+"""
 
 
 def count_fingers(results, image):
