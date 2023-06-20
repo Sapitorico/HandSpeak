@@ -12,7 +12,6 @@ function sendImages(imageData) {
     if (model[0].checked) {
       model = "Letter"
      } else model = "Number"
-    console.log(model)
     socket.send(JSON.stringify([imageData, hand, model]));
   } else {
     socket = new WebSocket('ws://127.0.0.1:8000');

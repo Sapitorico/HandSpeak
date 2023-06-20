@@ -1,16 +1,21 @@
 from ultralytics import YOLO
 
 class YOLO_loader:
-    model = YOLO("")
 
     def __init__(self, threshold):
         self.threshold = threshold
+        self.model = YOLO("../models/modeloLSUalfabeto.pt")
 
     def predict(self, resized_hand):
         cls = ""
-        prediction = YOLO_loader.model.predict(resized_hand, verbose=False, save=False, conf=self.threshold)
+        prediction = self.model.predict(resized_hand, verbose=False, save=False, conf=self.threshold)
+        names = self.model.names
         for result in prediction:
-            boxes = result[0].boxes.numpy()
-            for box in boxes:
-                cls = box.cls[0]
+            if len(result) > 0:
+                boxes = result[0].boxes.numpy()
+                for box in boxes:
+                    cls_id = box.cls[0]
+                    cls = names[cls_id]
+                    if cls == "nie":
+                        cls = "Ñ"
         return cls
