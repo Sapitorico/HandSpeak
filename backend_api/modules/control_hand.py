@@ -96,7 +96,7 @@ class HandControl:
 
         right_wrist = right_hand['lmList'][0]
         left_index_finger = left_hand['lmList'][8]
-        self.draw_line(image, right_wrist, left_index_finger)
+        # self.draw_line(image, right_wrist, left_index_finger)
 
         fingers_right = self.fingers_up(right_hand)
         if fingers_right == [0, 0, 0, 0, 0]:
