@@ -23,9 +23,6 @@ const Navigation = () => {
                         <a class="nav-link page-scroll" href="#detalles">Detalles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#blog">Blog</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link page-scroll" href="#PF">PF</a>
                     </li>
                     <li class="nav-item">

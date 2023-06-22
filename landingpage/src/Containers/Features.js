@@ -1,4 +1,5 @@
 import React from "react";
+import hand from "../static/img/hand.png";
 
 export const Features = () => {
     return (
@@ -25,7 +26,7 @@ export const Features = () => {
                     <div class="col-md-6 box">
                         <div class="icon-box box-primary">
                             <div class="icon-box-inner">
-                                <img src="static/img/hand.png" alt="Descripción de la imagen" width="35" height="35" />
+                                <img src={hand} alt="Descripción de la imagen" width="35" height="35" />
                             </div>
                         </div>
                         <h5>Manos</h5>
@@ -66,21 +67,6 @@ export const Features = () => {
                             oyente.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-6" id="blog">
-            <div class="col-md-6 mr-auto">
-                <h2>Beneficios de HandSpeak</h2>
-                <p class="mb-5">
-                    La principal ventaja de HandSpeak es que permite una
-                    comunicación fluida y efectiva entre personas sordas y
-                    oyentes, sin necesidad de un intérprete humano.
-
-                    Además, HandSpeak es una herramienta útil en
-                    situaciones de emergencia, ya que permite alos
-                    servicios de emergencia comunicarse con personas
-                    sordas y obtener información importante en tiempo real.</p>
-
             </div>
         </div>
     </div>
