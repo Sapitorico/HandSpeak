@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HandSpeak web page</title>
+    <meta name="description"
+          content="Knight is a beautiful Bootstrap 4 template for product landing pages."/>
+
+    <!--Inter UI font-->
+    <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
+
+    <!--vendors styles-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+    <!-- Bootstrap CSS / Color Scheme -->
+<!--    <link href="{{ url_for('static', path='/css/default.css') }}" rel="stylesheet">-->
+    <link rel="stylesheet" href="../static/css/default.css" id="theme-color">
+</head>
+<body>
+
+<!--navigation-->
+<section class="smart-scroll">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand heading-black" href="../templates/index.html">
+                HandSpeak
+            </a>
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span data-feather="grid"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#introduccion">Introducción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#detalles">Detalles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#PF">PF</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll d-flex flex-row align-items-center text-primary" href="#">
+                            <em data-feather="layout" width="18" height="18" class="mr-2"></em>
+                            Sapardo
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<!--hero header-->
+<section class="py-7 py-md-0 bg-hero" id="home">
+    <div class="container">
+        <div class="row vh-md-100">
+            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                <h1 class="heading-black text-capitalize">HandSpeak</h1>
+                <p class="lead py-3">Convierte las manos en palabras con nuestra app de traducción de lenguaje de señas
+                    en tiempo real, impulsada por inteligencia artificial. ¡Comunícate sin barreras y descubre una nueva
+                    forma de conectarte con el mundo</p>
+                <!-- <button class="btn btn-primary d-inline-flex flex-row align-items-center"> 
+                    <a href="/presenta_video">Empezar ahora</a>
+                    <em class="ml-2" data-feather="arrow-right"></em>
+                </button> -->
+            </div>
+        </div>
+        <!-- <section id="presenta_video" align="center">
+            <h1>Video en tiempo real</h1>
+            <div>
+                <img src="{{url_for('video')}}" width="auto" alt="sapo"/>
+            </div>
+        </section> -->
+    </div>
+</section>
+
+<!-- features section -->
+<section class="pt-6 pb-7" id="introduccion">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <h2 class="heading-black">Introducción</h2>
+                <p class="text-muted lead">
+                    HandSpeak es una herramienta que permite traducir el lenguaje de signos en tiempo real
+                    utilizando inteligencia artificial.
+                <p>
+                <p class="text-muted lead">
+                    Este sistema se ha creado para facilitar y demostrar una de las características más potentes de las
+                    redes neuronales convolucionales,
+                    facilitar la comunicación entre sordos y oyentes eliminando las barreras lingüísticas existentes.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5" id="detalles">
+            <div class="col-md-10 mx-auto">
+                <div class="row feature-boxes">
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-primary">
+                            <div class="icon-box-inner">
+                                <img src="static/img/hand.png" alt="Descripción de la imagen" width="35" height="35">
+                            </div>
+                        </div>
+                        <h5>Manos</h5>
+                        <p class="text-muted">La forma, orientación, movimiento y ubicación de las manos son algunos de
+                            los parámetros clave del lenguaje de signos.</p>
+                    </div>
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-success">
+                            <div class="icon-box-inner">
+                                <span data-feather="video" width="35" height="35"></span>
+                            </div>
+                        </div>
+                        <h5>Capturar los datos visuales</h5>
+                        <p class="text-muted">Captura de imágenes en tiempo real para el proceso de tratamiento de
+                            imágenes y clasificación de signos</p>
+                    </div>
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-danger">
+                            <div class="icon-box-inner">
+                                <span data-feather="cpu" width="35" height="35"></span>
+                            </div>
+                        </div>
+                        <h5>Procesar los datos</h5>
+                        <p class="text-muted">
+                            Los datos reconocidos visualmente se procesan, Las imágenes representan signos, diferentes
+                            partes de la oración</p>
+                        <p class="text-muted">
+                            visión por ordenador + inteligencia artificial</p>
+                    </div>
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-info">
+                            <div class="icon-box-inner">
+                                <span data-feather="message-square" width="35" height="35"></span>
+                            </div>
+                        </div>
+                        <h5>Presentar la opción</h5>
+                        <p class="text-muted">La frase seleccionada se muestra en la pantalla para que la lea el usuario
+                            oyente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-6" id="blog">
+            <div class="col-md-6 mr-auto">
+                <h2>Beneficios de HandSpeak</h2>
+                <p class="mb-5">
+                    La principal ventaja de HandSpeak es que permite una
+                    comunicación fluida y efectiva entre personas sordas y
+                    oyentes, sin necesidad de un intérprete humano.
+
+                    Además, HandSpeak es una herramienta útil en
+                    situaciones de emergencia, ya que permite alos
+                    servicios de emergencia comunicarse con personas
+                    sordas y obtener información importante en tiempo real.</p>
+
+            </div>
+            <div class="col-md-5">
+                <div class="slick-about">
+                    <img src="static/img/sapo.jpeg" class="img-fluid rounded d-block mx-auto" alt="Work 1"/>
+                    <img src="static/img/sapo.jpeg" class="img-fluid rounded d-block mx-auto" alt="Work 2"/>
+                    <img src="static/img/sapo.jpeg" class="img-fluid rounded d-block mx-auto" alt="Work 3"/>
+                </div>
+                <a href="#" class="btn btn-light">
+                    Demostración en directo
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--faq section-->
+<section class="py-7" id="PF">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <h2>Preguntas más frecuentes</h2>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-10 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <h6>Cómo funciona HandSpeak?</h6>
+                        <p class="text-muted">
+
+                            HandSpeak utiliza una combinación de tecnologías de
+                            reconocimiento de imágenes y gestos para identificar
+                            los movimientos de las manos y dedos de la persona
+                            que está hablando en lenguaje de señas.
+
+                            Estos movimientos se convierten en texto escrito
+                            utilizando algoritmos de procesamiento de lenguaje
+                            natural.
+                        </p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h6>Que desafíos enfrenta?</h6>
+                        <p class="text-muted">
+                            HandSpeak todavía enfrenta
+                            algunos desafíos técnicos, como la variabilidad de las imagenes,
+                            iluminacion, fondos, entornos complejos.
+                        </p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h6>Futuro de HandSpeak</h6>
+                        <p class="text-muted">
+                            A medida que se mejore la red neuronal, se espera que HandSpeak mejore su precisión y
+                            A medida que se mejore la red neuronal, se espera que HandSpeak mejore su precisión y
+                            gestos y señales.</p>
+                        <p class="text-muted">
+                            Además de extenderse a varias plataformas de videoconferencia como google met
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--news section-->
+<section class="py-7 bg-dark section-angle top-left bottom-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <h2 class="heading-black">Conclusión</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">
+                            HandSpeak es una herramienta innovadora que utiliza
+                            inteligencia artificial para facilitar la comunicación entre
+                            personas sordas y oyentes.
+                        </p>
+                        <p class="card-text">
+                            Aunque todavía enfrenta algunos desafíos técnicos, se
+                            espera que HandSpeak continúe mejorando y
+                            expandiéndose en el futuro, lo que permitirá una mayor
+                            inclusión y accesibilidad para personas sordas en todo
+                            el Uruguay.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--footer-->
+<footer class="py-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 mr-auto">
+                <ul class="list-inline social social-sm">
+                    <li class="list-inline-item">
+                        <a href=""><i class=""></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href=""><i class=""></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href=""><i class=""></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href=""><i class=""></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--scroll to top-->
+<div class="scroll-top">
+    <i class="fa fa-angle-up" aria-hidden="true"></i>
+</div>
+
+<!-- theme switcher (FOR DEMO ONLY - REMOVE FROM PRODUCTION)-->
+<!--<div class="switcher-wrap">-->
+<!--    <div class="switcher-trigger">-->
+<!--        <span class="fa fa-gear"></span>-->
+<!--    </div>-->
+<!--    <div class="color-switcher">-->
+<!--        <h6>Conmutador de color</h6>-->
+<!--        <ul class="mt-3 clearfix">-->
+<!--            <li class="bg-teal active" data-color="default" title="Default Teal"></li>-->
+<!--            <li class="bg-purple" data-color="purple" title="Purple"></li>-->
+<!--            <li class="bg-blue" data-color="blue" title="Blue"></li>-->
+<!--            <li class="bg-red" data-color="red" title="Red"></li>-->
+<!--            <li class="bg-green" data-color="green" title="Green"></li>-->
+<!--            <li class="bg-indigo" data-color="indigo" title="Indigo"></li>-->
+<!--            <li class="bg-orange" data-color="orange" title="Orange"></li>-->
+<!--            <li class="bg-cyan" data-color="cyan" title="Cyan"></li>-->
+<!--            <li class="bg-yellow" data-color="yellow" title="Yellow"></li>-->
+<!--            <li class="bg-pink" data-color="pink" title="Pink"></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="static/js/scripts.js"></script>
+</body>
+</html>
