@@ -39,11 +39,10 @@ class HandDetectionUtils:
         self.imgSize = imgSize
         self.offset = offset
         self.hands = mp_hands.Hands(
-            static_image_mode=False,
+            static_image_mode=True,
             max_num_hands=max_hand,
             model_complexity=1,
             min_detection_confidence=0.5,
-            min_tracking_confidence=0.5
         )
 
 
@@ -62,7 +61,6 @@ class HandDetectionUtils:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             image.flags.writeable = False
             result = self.hands.process(image)
-            image.flags.writeable = True
             return result
         except cv2.error as e:
             print(f'Error during hand detection: {e}')
@@ -94,7 +92,6 @@ class HandDetectionUtils:
 
 
     @staticmethod
-
     def get_bounding_box_coordinates(positions: List[Tuple[float, float, float]]) -> Tuple[int, int, int, int, int, int]:
         """
         bounding box coordinates calculation
@@ -130,16 +127,19 @@ class HandDetectionUtils:
         x2, y2 = x1 + ancho, y1 + alto
         resized_hand = copy_image[y1:y2, x1:x2]
         resized_hand = cv2.resize(resized_hand, (self.imgSize, self.imgSize), interpolation=cv2.INTER_CUBIC)
+        resized_hand = cv2.cvtColor(resized_hand, cv2.COLOR_BGR2RGB)
         return resized_hand
 
 
 if __name__ == '__main__':
+    from YOLO_model_loader import YOLO_loader
     """
     test in real time
     """
     capture = cv2.VideoCapture(0)
     Base = HandDetectionUtils(224)
     Hands = Base.hands
+    model = YOLO_loader(0.8)
     with Hands:
         while capture.isOpened():
             key = cv2.waitKey(1)
@@ -150,10 +150,11 @@ if __name__ == '__main__':
             result = Base.detect_hands(image)
             copy_image = image.copy()
             if result.multi_hand_landmarks:
-                positions = Base.detect_hand_type("Left", result, copy_image)
+                positions = Base.detect_hand_type("Right", result, copy_image)
                 if len(positions) != 0:
                     resized_hand = Base.get_image_resized(positions, copy_image)
-                    cv2.imshow("hand", resized_hand)
+                    cls = model.predict(resized_hand)
+                    print(cls)
             if key == 27:
                 break
             cv2.imshow("image capture", image)
