@@ -57,7 +57,7 @@ class Base_Model:
         land_mark = np.zeros(21 * 3)
         for hand_index, hand_info in enumerate(results.multi_handedness):
             hand_types = hand_info.classification[0].label
-            if hand_types == hand_type:
+            if hand_type == "all":
                 for hand_landmarks in results.multi_hand_landmarks:
                     for id, lm in enumerate(hand_landmarks.landmark):
                         alto, ancho, c = copie_img.shape
