@@ -75,30 +75,6 @@ class Utils:
 
         return f"{x_center:.6f} {y_center:.6f} {width:.6f} {height:.6f}"
 
-    # @staticmethod
-    # def anotation_data(results, image, annotation_file, class_index):
-    #     with open(annotation_file, 'a') as f:
-    #         for hand_landmarks in results.multi_hand_landmarks:
-    #             keypoints = []
-    #             for id, lm in enumerate(hand_landmarks.landmark):
-    #                 alto, ancho, c = image.shape
-    #                 x_rel = lm.x * ancho
-    #                 y_rel = lm.y * alto
-    #                 keypoints.extend([x_rel, y_rel])
-    #
-    #             x_min = min(keypoints[0::2])
-    #             y_min = min(keypoints[1::2])
-    #             x_max = max(keypoints[0::2])
-    #             y_max = max(keypoints[1::2])
-    #
-    #             x_min -= 20
-    #             y_min -= 20
-    #             x_max += 20
-    #             y_max += 20
-    #
-    #             annotation_data = f"{class_index} {Utils.convert_to_yolo_format(ancho, alto, [x_min, y_min, x_max, y_max])}"
-    #             f.write(annotation_data + '\n')
-
     @staticmethod
     def anotation_data(results, image, annotation_file, class_index):
         with open(annotation_file, 'a') as f:

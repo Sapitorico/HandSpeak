@@ -90,7 +90,7 @@ if __name__ == "__main__":
     parser.add_argument('--size_data', type=int, default=100, help='Total number of images to capture')
     parser.add_argument('--num_hands', type=int, default=2, help='Maximum number of hands to detect in the captured images')
     parser.add_argument('--hand_type', type=str, default='all', choices=['Left', 'Right', 'all'], help='Type of hand to capture')
-    parser.add_argument('--capture_time', type=int, default=15, help='Time interval between capturing images')
+    parser.add_argument('--capture_time', type=int, default=None, help='Time interval between capturing images')
 
     args = parser.parse_args()
 
