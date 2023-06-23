@@ -75,11 +75,11 @@ class HandControl:
     def draw_line(self, image, point1, point2):
         cv2.line(image, (point1[0], point1[1]), (point2[0], point2[1]), (0, 255, 0), 3)
 
-    def change_mode(self, image, result):
+    def change_mode(self, image, result, currentmode):
         hands = self.find_hands(image, result, flip_type=True)
 
         if len(hands) != 2:
-            return False
+            return currentmode
 
         right_hand = None
         left_hand = None
@@ -92,7 +92,7 @@ class HandControl:
                 left_hand = hand
 
         if not (right_hand and left_hand):
-            return False
+            return currentmode
 
         right_wrist = right_hand['lmList'][0]
         left_index_finger = left_hand['lmList'][8]
@@ -102,9 +102,13 @@ class HandControl:
         if fingers_right == [0, 0, 0, 0, 0]:
             distance = math.sqrt((left_index_finger[0] - right_wrist[0]) ** 2 + (left_index_finger[1] - right_wrist[1]) ** 2)
             if distance < 10:
-                return True
+                if currentmode == "Letter":
+                    return "Number"
+                if currentmode == "Number" :
+                    return "Letter"
+                    
 
-        return False
+        return currentmode
 
     def count_fingers(self, image, result):
         hands = self.find_hands(image, result, flip_type=True)

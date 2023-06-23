@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import cv2
-from urllib.request import urlopen
 import numpy as np
 from image_processing import HandDetectionUtils
-from numbers_model import count_fingers
+from control_hand import HandControl
 
 
 def processLetter(image, hand_type):
@@ -32,14 +31,14 @@ def processNumber(image):
     Returns: if success: The number taht has been obtained with count_fingers fucntion
                    else: string "Error, not a hand"
     """
-    Base = HandDetectionUtils(1, 224)
+    Base = HandDetectionUtils(224)
+    control = HandControl()
     Hands = Base.hands
+    image = cv2.flip(image, 1)
     with Hands:
         result = Base.detect_hands(image)
         copy_image = image.copy()
         if result.multi_hand_landmarks:
-            number = count_fingers(result, copy_image)
+            number = control.count_fingers(copy_image, result)
             return number
         return("Error, not a hand")
-
-      
