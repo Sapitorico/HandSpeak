@@ -9,6 +9,7 @@ import { Faq } from './Containers/Faq';
 import { Conclutions } from './Containers/conclution';
 import { Footer } from './Containers/Footer';
 import { Beneficios } from './Containers/beneficios';
+import Example from './Containers/screnshot';
 
 
 
@@ -19,6 +20,7 @@ function App() {
       <Navigation />
       <Header />
       <Features />
+      <Example />
       <Beneficios />
       <Faq />
       <Conclutions />
