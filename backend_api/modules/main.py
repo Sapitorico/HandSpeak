@@ -19,12 +19,40 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
         json_data = await websocket.receive_text()
+
         data = json.loads(json_data)
         req = urllib.request.urlopen(data[0])
         arr_img = np.asarray(bytearray(req.read()), dtype=np.uint8)
-        image = cv2.imdecode(arr_img, -1)
-        image = cv2.flip(image, 1)      
+        image = cv2.imdecode(arr_img, -1)    
+        image = cv2.flip(image, 1)  
 
+
+        if currentmode == "Letter":
+            result = processLetter(image, data[1], currentmode)
+
+        elif currentmode == "Number":
+            result = processNumber(image, currentmode)
+
+
+        if result == "Error, not a hand":
+                if checker != "checker":
+                    checker = "checker"
+                    await websocket.send_text("")
+
+        elif result in ["Number", "Word", "Letter"]:
+                currentmode = result
+                await websocket.send_text("Changeing mode")
+        
+        else:
+            if type(result) is not str:
+                result = model.predict(result)
+            if result != checker and result != "":
+                checker = result
+                await websocket.send_text(result)
+
+
+
+        """
         if currentmode == "Letter":
             to_predict = processLetter(image, data[1], currentmode)
             if to_predict == "Error, not a hand":
@@ -42,14 +70,12 @@ async def websocket_endpoint(websocket: WebSocket):
 
         if currentmode == "Number":
             result = processNumber(image, currentmode)
-            if result == "Error, not a hand":
-                if checker != "checker":
-                    checker = "checker"
-                    await websocket.send_text("")
+            if result == "Error, not a hand" and result == checker:
+                await websocket.send_text("")
             elif result in ["Letter", "Word"]:
                currentmode = result
                await websocket.send_text("Changeing mode")
-            elif result != checker:
+            else:
                checker = result
                await websocket.send_text(str(result))
-        
+        """

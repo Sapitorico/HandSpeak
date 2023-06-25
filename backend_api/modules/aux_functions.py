@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-import cv2
-import numpy as np
 from image_processing import HandDetectionUtils
 from control_hand import HandControl
 
@@ -42,11 +40,8 @@ def processNumber(image, currentmode):
         copy_image = image.copy()
         if result.multi_hand_landmarks:
             check = control.change_mode(image, result, currentmode)
-            print(currentmode)
-            print()
-            print(check)
             if check != currentmode:
                 return(check)
             number = control.count_fingers(copy_image, result)
-            return number
+            return str(number)
         return("Error, not a hand")
