@@ -12,22 +12,28 @@ import 'bootstrap';
 import ScrenEducation from '../static/img/Screenshot-educations.png'
 import ScrenInicio from '../static/img/Screenshot-inicio.png'
 import ScrenPractice from '../static/img/Screenshot-practice.png'
+import ScrenSetting from '../static/img/Screenshot-settings.png'
 
 const items = [
   {
     src: ScrenInicio,
     altText: 'screnshot of inicio windows',
-    caption: 'Inicio'
+    caption: ''
   },
   {
     src: ScrenEducation,
     altText: 'screnshot of Education windows',
-    caption: 'Education'
+    caption: ''
   },
   {
     src: ScrenPractice,
-    altText: 'Slide 3',
-    caption: 'Slide 3'
+    altText: 'screnshot of practice windows',
+    caption: ''
+  },
+  {
+    src: ScrenSetting,
+    altText: 'screnshot of setting windows',
+    caption: ''
   }
 ];
 
@@ -84,17 +90,24 @@ class Example extends Component {
     });
 
     return (
-        <div style={{width: "80%",display:'flex'}}>
-      <Carousel
-        activeIndex={activeIndex}
-        next={this.next}
-        previous={this.previous}
-      >
-        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
-        {slides}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-      </Carousel>
+      <div class="pt-6 pb-7" id="introduccion">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+              <Carousel
+                activeIndex={activeIndex}
+                next={this.next}
+                previous={this.previous}
+              >
+
+                <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+                {slides}
+                <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
+                <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+              </Carousel>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './static/css/default.css';
 
 /* import containers */
@@ -20,7 +19,9 @@ function App() {
       <Navigation />
       <Header />
       <Features />
-      <Example />
+      
+            <Example />
+            
       <Beneficios />
       <Faq />
       <Conclutions />

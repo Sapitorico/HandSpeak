@@ -6,7 +6,7 @@ export const Faq = () => {
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto text-center">
-                <h2>Preguntas más frecuentes</h2>
+                <h2>Preguntas frecuentes</h2>
             </div>
         </div>
         <div class="row mt-5">
