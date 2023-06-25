@@ -119,87 +119,87 @@
 # capture.release()
 # cv2.destroyAllWindows()
 
-# import cv2
-# from Base_Model.Detection_tools import Base_Model
-# from ultralytics import YOLO
-#
-# model = YOLO("CNN_Model/models/palabrasv1.pt")
-#
-# DATA_PATH = 'mp_dataset'
-# actions = []
-# imgSize = 224
-# size_data = 1000
-# save_frequency = 10
-# hand_type = "all"
-# key = 0
-# count = 0
-#
-# Base = Base_Model(DATA_PATH, actions, imgSize, size_data)
-# Hands = Base.Hands_model_configuration(False, 2, 1)
-# capture = cv2.VideoCapture(0)
-#
-# sequence = []
-# sequence_length = 20
-#
-# while capture.isOpened():
-#     key = cv2.waitKey(1)
-#     success, image = capture.read()
-#
-#     if not success:
-#         continue
-#
-#     image = cv2.flip(image, 1)
-#     frame, results = Base.Hands_detection(image, Hands)
-#     copie_img = frame.copy()
-#
-#     if results.multi_hand_landmarks:
-#         positions = []
-#         positions, key_points = Base.Detect_hand_type(hand_type, results, positions, copie_img)
-#
-#         if len(positions) != 0:
-#             Base.Draw_Bound_Boxes(positions, frame)
-#             predicted_action = ""
-#             resized_hand = Base.Get_bound_boxes(positions, copie_img)
-#             prediction = model.predict(resized_hand, verbose=False, save=False, conf=0.5)
-#             names = model.names
-#
-#             word_sequence = []
-#
-#             for result in prediction:
-#                 try:
-#                     boxes = result[0].boxes.numpy()
-#                     for box in boxes:
-#                         cls = box.cls[0]
-#                         predicted_word = names[cls]
-#                         word_sequence.append(predicted_word)
-#                 except:
-#                     continue
-#
-#             if len(word_sequence) > sequence_length:
-#                 word_sequence = word_sequence[-sequence_length:]
-#
-#             if len(word_sequence) > 0:
-#                 word_counts = {}
-#                 for word in word_sequence:
-#                     if word in word_counts:
-#                         word_counts[word] += 1
-#                     else:
-#                         word_counts[word] = 1
-#
-#                 most_common_word = max(word_counts, key=word_counts.get)
-#                 last_word = word_sequence[-1]
-#
-#                 if last_word is not None and word_counts.get(last_word, 0) > word_counts.get(most_common_word, 0):
-#                     print("Detected word:", last_word)
-#                 else:
-#                     print("Detected word:", most_common_word)
-#             else:
-#                 print("No words detected.")
-#     if key == 27:
-#         exit(0)
-#
-#     cv2.imshow("image capture", frame)
-#
-# capture.release()
-# cv2.destroyAllWindows()
+import cv2
+from Base_Model.Detection_tools import Base_Model
+from ultralytics import YOLO
+
+model = YOLO("CNN_Model/models/palabrasv1.pt")
+
+DATA_PATH = 'mp_dataset'
+actions = []
+imgSize = 224
+size_data = 1000
+save_frequency = 10
+hand_type = "all"
+key = 0
+count = 0
+
+Base = Base_Model(DATA_PATH, actions, imgSize, size_data)
+Hands = Base.Hands_model_configuration(False, 2, 1)
+capture = cv2.VideoCapture(0)
+
+sequence = []
+sequence_length = 20
+
+while capture.isOpened():
+    key = cv2.waitKey(1)
+    success, image = capture.read()
+
+    if not success:
+        continue
+
+    image = cv2.flip(image, 1)
+    frame, results = Base.Hands_detection(image, Hands)
+    copie_img = frame.copy()
+
+    if results.multi_hand_landmarks:
+        positions = []
+        positions, key_points = Base.Detect_hand_type(hand_type, results, positions, copie_img)
+
+        if len(positions) != 0:
+            Base.Draw_Bound_Boxes(positions, frame)
+            predicted_action = ""
+            resized_hand = Base.Get_bound_boxes(positions, copie_img)
+            prediction = model.predict(resized_hand, verbose=False, save=False, conf=0.5)
+            names = model.names
+
+            word_sequence = []
+
+            for result in prediction:
+                try:
+                    boxes = result[0].boxes.numpy()
+                    for box in boxes:
+                        cls = box.cls[0]
+                        predicted_word = names[cls]
+                        word_sequence.append(predicted_word)
+                except:
+                    continue
+
+            if len(word_sequence) > sequence_length:
+                word_sequence = word_sequence[-sequence_length:]
+
+            if len(word_sequence) > 0:
+                word_counts = {}
+                for word in word_sequence:
+                    if word in word_counts:
+                        word_counts[word] += 1
+                    else:
+                        word_counts[word] = 1
+
+                most_common_word = max(word_counts, key=word_counts.get)
+                last_word = word_sequence[-1]
+
+                if last_word is not None and word_counts.get(last_word, 0) > word_counts.get(most_common_word, 0):
+                    print("Detected word:", last_word)
+                else:
+                    print("Detected word:", most_common_word)
+            else:
+                print("No words detected.")
+    if key == 27:
+        exit(0)
+
+    cv2.imshow("image capture", frame)
+
+capture.release()
+cv2.destroyAllWindows()
 #
