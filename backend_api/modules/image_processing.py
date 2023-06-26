@@ -6,7 +6,6 @@ import numpy as np
 from typing import Tuple, Any, List # Type information
 
 mp_hands = mp.solutions.hands
-mp_drawing = mp.solutions.drawing_utils
 
 """
 utils class for image processing, functionalities:
@@ -129,34 +128,3 @@ class HandDetectionUtils:
         resized_hand = cv2.resize(resized_hand, (self.imgSize, self.imgSize), interpolation=cv2.INTER_CUBIC)
         resized_hand = cv2.cvtColor(resized_hand, cv2.COLOR_BGR2RGB)
         return resized_hand
-
-
-if __name__ == '__main__':
-    from YOLO_model_loader import YOLO_loader
-    """
-    test in real time
-    """
-    capture = cv2.VideoCapture(0)
-    Base = HandDetectionUtils(224)
-    Hands = Base.hands
-    model = YOLO_loader(0.8)
-    with Hands:
-        while capture.isOpened():
-            key = cv2.waitKey(1)
-            success, image = capture.read()
-            if not success:
-                continue
-            image = cv2.flip(image, 1)
-            result = Base.detect_hands(image)
-            copy_image = image.copy()
-            if result.multi_hand_landmarks:
-                positions = Base.detect_hand_type("Right", result, copy_image)
-                if len(positions) != 0:
-                    resized_hand = Base.get_image_resized(positions, copy_image)
-                    cls = model.predict(resized_hand)
-                    print(cls)
-            if key == 27:
-                break
-            cv2.imshow("image capture", image)
-    capture.release()
-    cv2.destroyAllWindows()
