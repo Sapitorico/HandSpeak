@@ -2,6 +2,7 @@
 # import cv2
 # import math
 # from Base_Model.HANDTrackingModule import HandDetector
+from cvzone.HandTrackingModule import HandDetector
 #
 # cap = cv2.VideoCapture(0)
 # detector = HandDetector(detectionCon=0.8, maxHands=2)
@@ -123,7 +124,7 @@ import cv2
 from Base_Model.Detection_tools import Base_Model
 from ultralytics import YOLO
 
-model = YOLO("CNN_Model/models/palabrasv1.pt")
+model = YOLO("CNN_Model/palabras_una_mano.pt")
 
 DATA_PATH = 'mp_dataset'
 actions = []
@@ -139,7 +140,7 @@ Hands = Base.Hands_model_configuration(False, 2, 1)
 capture = cv2.VideoCapture(0)
 
 sequence = []
-sequence_length = 20
+sequence_length = 30
 
 while capture.isOpened():
     key = cv2.waitKey(1)
@@ -160,7 +161,7 @@ while capture.isOpened():
             Base.Draw_Bound_Boxes(positions, frame)
             predicted_action = ""
             resized_hand = Base.Get_bound_boxes(positions, copie_img)
-            prediction = model.predict(resized_hand, verbose=False, save=False, conf=0.5)
+            prediction = model.predict(resized_hand, verbose=False, save=False, conf=0.8)
             names = model.names
 
             word_sequence = []
