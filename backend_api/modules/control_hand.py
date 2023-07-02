@@ -99,6 +99,7 @@ class HandControl:
         # self.draw_line(image, right_wrist, left_index_finger)
 
         fingers_right = self.fingers_up(right_hand)
+        fingers_left = self.fingers_up(left_hand)
         if fingers_right == [1, 1, 1, 1, 1]:
             distance = math.sqrt((left_index_finger[0] - right_wrist[0]) ** 2 + (left_index_finger[1] - right_wrist[1]) ** 2)
             if distance < 10:
@@ -108,11 +109,33 @@ class HandControl:
             distance = math.sqrt((left_index_finger[0] - right_wrist[0]) ** 2 + (left_index_finger[1] - right_wrist[1]) ** 2)
             if distance < 10:
                     return "Letter"
-        
-               
-                    
+        if fingers_right == [1, 0, 0, 0, 0]:
+                    return "Next"
 
         return currentmode
+
+    def change_mode2(self, image, result, currentmode):
+        hands = self.find_hands(image, result, flip_type=True)
+
+        if len(hands) != 1:
+            return currentmode
+
+        right_hand = None
+
+        for hand in hands:
+            hand_type = hand['type']
+            if hand_type == "Right":
+                right_hand = hand
+
+        if not (right_hand):
+            return currentmode
+
+        fingers_right = self.fingers_up(right_hand)
+        if fingers_right == [1, 0, 0, 0, 1]:
+            return "Next"
+
+        return currentmode
+
 
     def count_fingers(self, image, result):
         hands = self.find_hands(image, result, flip_type=True)
@@ -149,11 +172,8 @@ if __name__ == "__main__":
             result = Base.detect_hands(image)
             if result.multi_hand_landmarks:
                 xd =""
-                xd = control.change_mode(image, result, "")  
+                xd = control.change_mode2(image, result, "")
                 print(xd)
-                
-                fingers = control.count_fingers(image, result)
-                print(fingers)
             if key == 27:
                 break
             cv2.imshow("image capture", image)
