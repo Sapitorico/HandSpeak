@@ -1,5 +1,9 @@
 import React from "react";
-import hand from "../static/img/hand.png";
+
+import hand from "../static/icons/icon-hand-w.png";
+import data from "../static/icons/icon-data-w.png";
+import display from "../static/icons/icon-display-w.png";
+import video from "../static/icons/icon-video-w.png";
 
 export const Features = () => {
     return (
@@ -10,7 +14,7 @@ export const Features = () => {
             <div class="col-md-6 mx-auto text-center">
                 <h2 class="heading-black">Introducción</h2>
                 <p class="text-muted lead">
-                    HandSpeak es una herramienta que permite traducir el lenguaje de signos en tiempo real
+                    HandSpeak es una herramienta que permite interpretar la lengua de señas en tiempo real
                     utilizando inteligencia artificial.
                 </p>
                 <p class="text-muted lead">
@@ -26,17 +30,17 @@ export const Features = () => {
                     <div class="col-md-6 box">
                         <div class="icon-box box-primary">
                             <div class="icon-box-inner">
-                                <img src={hand} alt="Descripción de la imagen" width="35" height="35" />
+                                <img src={hand} alt="imagen" width="35" height="35" />
                             </div>
                         </div>
                         <h5>Manos</h5>
                         <p class="text-muted">La forma, orientación, movimiento y ubicación de las manos son algunos de
-                            los parámetros clave del lenguaje de signos.</p>
+                            los parámetros clave de la lengua de señas.</p>
                     </div>
                     <div class="col-md-6 box">
                         <div class="icon-box box-success">
                             <div class="icon-box-inner">
-                                <span data-feather="video" width="35" height="35"></span>
+                            <img src={video} alt="imagen" width="35" height="35" />
                             </div>
                         </div>
                         <h5>Capturar los datos visuales</h5>
@@ -44,9 +48,9 @@ export const Features = () => {
                             imágenes y clasificación de signos</p>
                     </div>
                     <div class="col-md-6 box">
-                        <div class="icon-box box-danger">
+                        <div class="icon-box box-info">
                             <div class="icon-box-inner">
-                                <span data-feather="cpu" width="35" height="35"></span>
+                            <img src={data} alt="imagen" width="35" height="35" />
                             </div>
                         </div>
                         <h5>Procesar los datos</h5>
@@ -59,7 +63,7 @@ export const Features = () => {
                     <div class="col-md-6 box">
                         <div class="icon-box box-info">
                             <div class="icon-box-inner">
-                                <span data-feather="message-square" width="35" height="35"></span>
+                            <img src={display} alt="imagen" width="35" height="35" />
                             </div>
                         </div>
                         <h5>Presentar la opción</h5>

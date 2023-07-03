@@ -1,9 +1,11 @@
 import React from "react";
 
+import downl from "../static/toDownload/example.rar"
+
 const Navigation = () => {
     return (
         <>
-<section class="smart-scroll">
+<section class="smart-scroll" style={{backgroundColor: "rgba(0,0,0,0.9)"}}>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="../templates/index.html">
@@ -26,9 +28,9 @@ const Navigation = () => {
                         <a class="nav-link page-scroll" href="#PF">PF</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll d-flex flex-row align-items-center text-primary" href="#">
+                        <a class="nav-link page-scroll d-flex flex-row align-items-center text-primary" href={downl} download="example_text.rar">
                             <em data-feather="layout" width="18" height="18" class="mr-2"></em>
-                            HandSpeak
+                            Download
                         </a>
                     </li>
                 </ul>

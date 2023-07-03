@@ -10,7 +10,7 @@ export const Conclutions = () => {
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text">
-                                    HandSpeak es una herramienta innovadora que utiliza
+                                    HandSpeak es una herramienta imnovadora que utiliza
                                     inteligencia artificial para facilitar la comunicación entre
                                     personas sordas y oyentes.
                                 </p>

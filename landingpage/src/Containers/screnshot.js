@@ -37,7 +37,7 @@ const items = [
   }
 ];
 
-class Example extends Component {
+class Examples extends Component {
   constructor(props) {
     super(props);
     this.state = { activeIndex: 0 };
@@ -83,7 +83,7 @@ class Example extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} width="100%" />
+          <img src={item.src} alt={item.altText} width="600px" />
           <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
       );
@@ -114,4 +114,4 @@ class Example extends Component {
 }
 
 
-export default Example;
+export default Examples;

@@ -19,7 +19,7 @@ export const Faq = () => {
                             HandSpeak utiliza una combinación de tecnologías de
                             reconocimiento de imágenes y gestos para identificar
                             los movimientos de las manos y dedos de la persona
-                            que está hablando en lenguaje de señas.
+                            que se está expresando en lengua de señas.
 
                             Estos movimientos se convierten en texto escrito
                             utilizando algoritmos de procesamiento de lenguaje
@@ -31,17 +31,17 @@ export const Faq = () => {
                         <p class="text-muted">
                             HandSpeak todavía enfrenta
                             algunos desafíos técnicos, como la variabilidad de las imagenes,
-                            iluminacion, fondos, entornos complejos.
+                            iluminacion, fondos
+                            y entornos complejos.
                         </p>
                     </div>
                     <div class="col-md-6 mb-5">
                         <h6>Futuro de HandSpeak</h6>
                         <p class="text-muted">
-                            A medida que se mejore la red neuronal, se espera que HandSpeak mejore su precisión y
-                            A medida que se mejore la red neuronal, se espera que HandSpeak mejore su precisión y
+                            A medida que se mejore la red neuronal, se espera que HandSpeak mejore su precisión,
                             gestos y señales.</p>
                         <p class="text-muted">
-                            Además de extenderse a varias plataformas de videoconferencia como google met
+                            Además de extenderse a varias plataformas de videoconferencia como google met por ejemplo
                         </p>
                     </div>
                 </div>

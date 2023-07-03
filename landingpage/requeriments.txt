@@ -1,1 +1,2 @@
 npm i bootstrap reactstrap
+npm i gh-pages
