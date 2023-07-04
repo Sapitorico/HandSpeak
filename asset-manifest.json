@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/HandSpeak/static/css/main.238cfed8.css",
+    "main.js": "/HandSpeak/static/js/main.d317e094.js",
+    "static/js/787.4c02c682.chunk.js": "/HandSpeak/static/js/787.4c02c682.chunk.js",
+    "static/media/Screenshot-inicio.png": "/HandSpeak/static/media/Screenshot-inicio.4045c155104c5b06e55a.png",
+    "static/media/Screenshot-practice.png": "/HandSpeak/static/media/Screenshot-practice.58a51bf71c990337769c.png",
+    "static/media/Screenshot-educations.png": "/HandSpeak/static/media/Screenshot-educations.f53e561cf6b182ccadb5.png",
+    "static/media/Screenshot-settings.png": "/HandSpeak/static/media/Screenshot-settings.7310d77db6a9c5b1dd79.png",
+    "static/media/Juan_Rey.jpg": "/HandSpeak/static/media/Juan_Rey.3b0be69649780285b998.jpg",
+    "static/media/Renzo_Yaques.jpg": "/HandSpeak/static/media/Renzo_Yaques.4fbc684fca84a6a143e1.jpg",
+    "static/media/Joaquin_Furtado.jpg": "/HandSpeak/static/media/Joaquin_Furtado.9825413b482be9d951a6.jpg",
+    "static/media/Mauricio_De_Betolaza.jpg": "/HandSpeak/static/media/Mauricio_De_Betolaza.619b9b60becb5f3a65be.jpg",
+    "index.html": "/HandSpeak/index.html",
+    "static/media/example.rar": "/HandSpeak/static/media/example.683dabeab8ac73c61ffd.rar",
+    "main.238cfed8.css.map": "/HandSpeak/static/css/main.238cfed8.css.map",
+    "main.d317e094.js.map": "/HandSpeak/static/js/main.d317e094.js.map",
+    "787.4c02c682.chunk.js.map": "/HandSpeak/static/js/787.4c02c682.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.238cfed8.css",
+    "static/js/main.d317e094.js"
+  ]
+}
