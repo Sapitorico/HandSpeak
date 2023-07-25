@@ -2,10 +2,15 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <link rel="stylesheet" href="styles.css">
     <title>Handspeak</title>
+    <!--
+    <style>
+      #canvas {
+          display: none;
+      }
+  </style>
+-->
   </head>
   <body>
     <div id="header-container">
@@ -33,5 +38,82 @@
     <div class="edLayer4"></div>
     <div class="edLayer5"></div>
     <h1 class="letraCamara">[Cámara]</h1>
+
+    <button type="button" class="button1" onclick="openCamera()">Abrir Camara</button>
+    <button type="butt" class="button2" onclick="closeCamera()">Cerrar Camara</button>
+    <video id="video" width="280" height="280" autoplay></video>
+    <div class="edLayer6"></div>
+    <p class="edLetras">Letras</p>
+    <p class="edNumeros">Números</p>
+    <p class="edPalabras">Palabras</p>
+    <div class="line3"></div>
+    <div class="line4"></div>
+    <div class="circle1"></div>
+    <div class="toggle-button"></div>
+    <div class="circle2"></div>
+    <div class="toggle-button2 active"></div>
+    <div class="circle3"></div>
+    <div class="toggle-button3"></div>
+    <!--
+    <h1>La letra es : <span id="letter"></span></h1>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <br>
+    <input type="radio" id="radio1" name="options" value="Right" checked>
+    <label for="radio1">Right Hand</label>
+    <input type="radio" id="radio2" name="options" value="Left">
+    <label for="radio2">Left Hand</label>
+    -->
+   
+    <script src="../909/app elec/websocket.js"></script>
+    <script src="../909/app elec/camera.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var toggleButton = document.querySelector('.toggle-button');
+
+        toggleButton.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var toggleButton = document.querySelector('.toggle-button2');
+
+        toggleButton.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var toggleButton = document.querySelector('.toggle-button3');
+
+        toggleButton.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    </script>
+<!--    <script>
+      function toggleButton(buttonId) {
+        var toggleButton = document.querySelector('.toggle-button' + buttonId);
+        var toggleButtons = document.querySelectorAll('.toggle-button');
+    
+        toggleButtons.forEach(function(button) {
+          if (button !== toggleButton) {
+            button.classList.remove('active');
+          }
+        });
+    
+        toggleButton.classList.toggle('active');
+      }
+    </script>
+  -->
+    <!--
+    <br>
+    <input type="radio" id="radio1" name="model" value="Letras" checked>
+    <label for="radio1">Letras</label>
+    <input type="radio" id="radio2" name="model" value="Numeros">
+    <label for="radio2">Numeros</label> 
+    -->
   </body>
 </html>

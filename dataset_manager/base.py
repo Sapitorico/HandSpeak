@@ -1,10 +1,38 @@
 #/usr/bin/python3
+# -*- coding: utf-8 -*-
 import cv2
 import os
 import random
 import yaml
-from utils import Utils
-import numpy as np
+from utils.utils import Utils
+
+"""
+The CustomHandDataset class is responsible for creating a custom dataset for hand gesture recognition.
+It takes in the directories for training and validation data, the output directory, the name of the dataset directory, and the image size as input.
+The class creates the necessary directories for the dataset, reads the class names from a file, detects hands in the images, creates annotations in
+the YOLO format, and saves the resized images and annotations in the appropriate directories. Finally, it creates a configuration file for the dataset.
+
+Methods:
+- __init__: Initializes the class and sets the necessary directories and image size.
+- create_dataset: Calls the create_dataset_yolo method for both the training and validation directories.
+- create_dataset_yolo: Iterates through the images in a directory, detects hands in the images, creates annotations in the YOLO format, and saves the resized images and annotations in the appropriate directories.
+- create_dataset_config: Creates a configuration file for the dataset.
+- __len__: Returns the total number of images in the training and validation directories.
+
+Fields:
+- data_dir_train: Directory for the training data.
+- data_dir_val: Directory for the validation data.
+- output_dir: Directory for the output dataset.
+- img_size: Size of the images in the dataset.
+- val_image_dir: Directory for the validation images.
+- train_image_dir: Directory for the training images.
+- label_train: Directory for the training annotations.
+- label_val: Directory for the validation annotations.
+- class_file: File containing the class names.
+- classes: List of class names.
+- hands: Hands model configuration for detecting hands in the images.
+"""
+
 
 class CustomHandDataset:
     def __init__(self, data_dir_train, data_dir_val, output_dir, dataset_name_dir, img_size=224):
@@ -36,7 +64,7 @@ class CustomHandDataset:
                 with open(self.class_file, 'w') as f:
                     self.classes = []
 
-            self.hands = Utils.Hands_model_configuration(False, 1, 1)
+            self.hands = Utils.Hands_model_configuration(False, 2, 1)
             self.create_dataset(train_image_dir, val_image_dir, label_train, label_val)
 
             # Shuffle the classes
@@ -110,11 +138,22 @@ class CustomHandDataset:
 
 
 if __name__ == '__main__':
-    data_dir_train = "images/training_subset_1"
-    data_dir_val = "images/validation_subset_1"
-    output_dir = "datasets"
-    dataset_name = "dataset-v1"
-    img_size = 224
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Custom Hand Dataset Creator')
+    parser.add_argument('--data_dir_train', type=str, required=True, help='Directory for training data')
+    parser.add_argument('--data_dir_val', type=str, required=True, help='Directory for validation data')
+    parser.add_argument('--output_dir', type=str, required=True, help='Output directory')
+    parser.add_argument('--dataset_name', type=str, required=True, help='Name of the dataset directory')
+    parser.add_argument('--img_size', type=int, default=224, help='Image size')
+
+    args = parser.parse_args()
+
+    data_dir_train = args.data_dir_train
+    data_dir_val = args.data_dir_val
+    output_dir = args.output_dir
+    dataset_name = args.dataset_name
+    img_size = args.img_size
+
     dataset = CustomHandDataset(data_dir_train, data_dir_val, output_dir, dataset_name, img_size)
     dataset_length = len(dataset)
-    print(dataset_length)

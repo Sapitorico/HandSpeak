@@ -1,8 +1,0 @@
-fastapi==0.97.0
-matplotlib==3.7.1
-mediapipe==0.10.1
-numpy==1.24.3
-onnxruntime==1.15.0
-opencv-python==4.7.0.72
-uvicorn==0.22.0
-websockets==11.0.3
