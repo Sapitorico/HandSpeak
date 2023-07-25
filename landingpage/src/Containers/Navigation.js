@@ -26,7 +26,7 @@ const Navigation = () => {
                         <a class="nav-link page-scroll" href="#PF">PF</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll d-flex flex-row align-items-center text-primary" href="#">
+                        <a class="nav-link page-scroll d-flex flex-row align-items-center text-primary" href="">
                             <em data-feather="layout" width="18" height="18" class="mr-2"></em>
                             HandSpeak
                         </a>
